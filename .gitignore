@@ -1,0 +1,24 @@
+# macOS
+.DS_Store
+._*
+
+# editors
+.vscode/
+.idea/
+*.swp
+
+# node (only if a build step gets added later)
+node_modules/
+package-lock.json
+
+# secrets / local config
+.env
+.env.local
+
+# AI tool local state
+.claude/
+.aider*
+
+# scratch
+tmp/
+*.log
