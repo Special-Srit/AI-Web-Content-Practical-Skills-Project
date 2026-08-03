@@ -68,6 +68,25 @@ covering the recording/transcription workflow and note conventions.
 dead-end and expose its structure. Reference notes by path only, as the README's
 관련 노트 table does.
 
+## Tooling — who does what
+
+**Srit does the visual design himself, in Figma.** Don't generate finished
+visuals or make aesthetic calls for him; produce the structural spec and let him
+design from it. Same principle he applies to Unity Editor work — doing it by hand
+is how he learns the tool.
+
+| Need | Use |
+| --- | --- |
+| Author/edit Figma nodes (grey-box scaffolds, auto-layout) | `figma-bridge` MCP |
+| Read a Figma file, design context, codegen | official `claude_ai_Figma` MCP |
+| Wireframe of record | text structure in `docs/04-design.md` |
+
+**Never output a wireframe or mockup as a flat image.** The instructor's demo
+failed precisely there — AI emitted the wireframe as an image, it had a missing
+screen link, and it couldn't be corrected without rebuilding in Figma. Editable
+Figma nodes are the fix, and are worth citing in the presentation's AI-limits
+section since it's an improvement on his own example.
+
 ## Language convention
 
 Following the same split used in Project-CX: **English identifiers and
