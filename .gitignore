@@ -15,8 +15,9 @@ package-lock.json
 .env
 .env.local
 
-# AI tool local state
-.claude/
+# AI tool local state — but keep role agent definitions version-controlled
+.claude/*
+!.claude/agents/
 .aider*
 
 # scratch
