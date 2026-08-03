@@ -35,6 +35,23 @@ src/      웹앱 소스
 assets/   이미지 · 아이콘
 ```
 
+## 관련 노트 (Obsidian)
+
+수업 내용은 개인 Obsidian 볼트에 회차별로 기록. **비공개 저장소이므로 링크가 아닌
+경로로 표기** — 볼트 루트 기준.
+
+| 회차 | 노트 경로 |
+| --- | --- |
+| 1-1 (OT) | `Study/AI-Web-Content-Practical-Skills/KR/오리엔테이션-KR.md` (영문: `Eng/Orientation-Eng.md`) |
+| 1-2 | `Study/AI-Web-Content-Practical-Skills/KR/Week-1/1-2-기획-프로세스와-웹앱-KR.md` |
+| 폴더 규칙 | `Study/AI-Web-Content-Practical-Skills/CLAUDE.md` |
+
+회차 노트는 `KR/Week-<주차>/<일>-<교시>-<주제>-KR.md` 규칙으로 쌓이므로, 위 표에
+없는 회차는 해당 폴더에서 교시 번호로 찾으면 됨. 일자별 종합 노트는
+`KR/Week-N/N일차-종합-KR.md` 와 `Eng/Week-N/Day-N-Summary-Eng.md`.
+
+이 저장소의 기획 산출물(`docs/`)은 위 노트의 기획 파이프라인 순서를 따라감.
+
 ---
 
 # AI Web Content Practical Skills — Mini Project
@@ -46,4 +63,6 @@ Topic and team-vs-solo are still undecided as of day 1; stack is plain
 HTML/CSS/JavaScript with no framework, targeting a responsive web app that runs
 without installation.
 
-수업 노트는 Obsidian 볼트의 `Study/AI-Web-Content-Practical-Skills/` 에 있음.
+Class notes live in a private Obsidian vault under
+`Study/AI-Web-Content-Practical-Skills/` — see 관련 노트 above for per-period
+paths. Referenced by path rather than link because that vault is private.
