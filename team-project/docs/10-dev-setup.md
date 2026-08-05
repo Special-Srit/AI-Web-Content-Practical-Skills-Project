@@ -99,7 +99,7 @@ npx shadcn@latest init
 **한 번에 다 깔지 말 것.** 쓸 때 하나씩 추가한다. 안 쓰는 컴포넌트는 그냥 빚이다.
 
 ```bash
-npx shadcn@latest add button input textarea card badge slider drawer dialog sonner tabs toggle-group dropdown-menu switch
+npx shadcn@latest add button input textarea card badge slider drawer dialog sonner tabs toggle-group dropdown-menu switch avatar
 ```
 
 | 컴포넌트 | 어디에 쓰나 |
@@ -116,13 +116,14 @@ npx shadcn@latest add button input textarea card badge slider drawer dialog sonn
 | `tabs` | **일기 화면 안의** `날짜별 / 기분별` 전환 |
 | `toggle-group` | 기분 선택 (5개 중 하나) |
 | `dropdown-menu` | 트랙 행의 `⋮` 메뉴 |
-| `switch` | 설정의 on/off 항목 |
+| `switch` | 자동 재생 등 on/off |
+| `avatar` | 트랙·플레이리스트 썸네일 폴백 |
 
 ### 쓰지 않는 것
 
-- **하단 4탭에 `tabs`를 쓰지 않는다.** 목적지 이동이지 패널 전환이 아니므로
+- **하단 5탭에 `tabs`를 쓰지 않는다.** 목적지 이동이지 패널 전환이 아니므로
   `<nav>` + 버튼으로 직접 만든다 — `NavFooter.jsx` (`09` §6).
-  단 **일기 화면 안의 `날짜별 / 기분별` 전환에는 `tabs`가 맞다**
+  단 **화면 안의 필터 전환(전체/노래/…)에는 `tabs`가 맞다**
 - `sidebar` · `navigation-menu` — 데스크톱용
 - `table` · `chart` — 이 앱에 표도 차트도 없다
 

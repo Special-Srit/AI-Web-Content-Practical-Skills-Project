@@ -60,13 +60,18 @@ team-project/src/
     formats.js            canPlayType 판정 · 에러 코드 매핑
   store/
     persist.js            localStorage 읽기·쓰기 · schemaVersion
-    tracks.js             트랙 CRUD · 파일 재연결
+    tracks.js             트랙 CRUD · 파일 재연결 · 좋아요
+    playlists.js          플레이리스트 CRUD · 곡 추가/제거/순서
     diary.js              기분 일기 CRUD
+    settings.js           자동 재생 · 슬립 타이머 · 테마
   moods.js                기분 5종 상수 (단일 출처)
   screens/
-    Home.jsx  Archive.jsx  Diary.jsx  Settings.jsx
+    Home.jsx  Library.jsx  Explore.jsx  Diary.jsx  MyPage.jsx
   components/
-    NavFooter.jsx  PlayerSheet.jsx  TrackRow.jsx
+    NavFooter.jsx         5탭
+    MiniPlayer.jsx        탭 바 위에 항상 붙어 있는 바
+    PlayerSheet.jsx       미니 바를 눌러 올라오는 전체 화면
+    TrackRow.jsx  PlaylistRow.jsx
     MoodPicker.jsx  DiaryCard.jsx  EmptyState.jsx
     MoodArtwork.jsx       기분 기반 커버 플레이스홀더
   styles/
@@ -96,7 +101,12 @@ getState()     → PlayerState
 // store/tracks.js
 listTracks()             addTracks(fileList)      removeTrack(id)
 setMoods(trackId, moods) updateMeta(id, {title, artist})
-toggleFavorite(id)
+toggleFavorite(id)       recentlyPlayed(limit)
+
+// store/playlists.js
+listPlaylists()  createPlaylist(name)  renamePlaylist(id, name)
+deletePlaylist(id)  addTracks(playlistId, trackIds)
+removeTrack(playlistId, trackId)  reorder(playlistId, trackIds)
 resolveSrc(track)  → track.assetUrl (bundled) | objectURL (picked) | null
 
 // store/diary.js
@@ -146,13 +156,17 @@ listEntries()            upsertEntry(entry)       entriesByMood(mood)
 
 | 탭 | 화면 | 주요 컴포넌트 |
 | --- | --- | --- |
-| 홈 | 기분 선택 → 오늘의 추천 → 지금 재생 중(플레이어 바) | `MoodPicker` `TrackRow` `MoodArtwork` |
-| 보관함 | 전체 트랙 · 검색 · 파일 추가 · 기분 태그·제목 수정 | `TrackRow` `MoodPicker` `EmptyState` |
-| 일기 | 오늘 쓰기 · **날짜별 히스토리 / 기분별 모아보기** | `DiaryCard` `MoodPicker` `EmptyState` |
-| 설정 | 음원 크레딧 · 데이터 관리 · 앱 정보 | — |
+| 홈 | 기분 선택 → 오늘의 추천 → 최근 재생 | `MoodPicker` `TrackRow` `MoodArtwork` |
+| 라이브러리 | 업로드한 음악 · 좋아요 · 최근 재생 · 내 플레이리스트 | `TrackRow` `PlaylistRow` `EmptyState` |
+| 탐색 | 검색 · 분위기별 모아보기 | `MoodPicker` `TrackRow` `EmptyState` |
+| 일기 | 날짜별 히스토리 · 일기 작성 (음악 연결) | `DiaryCard` `MoodPicker` `EmptyState` |
+| 마이 | 음악 취향 · 재생 설정 · 알림 · 테마 · 이용약관 | — |
 
-- **일기의 `날짜별 / 기분별` 전환은 shadcn `tabs`를 써도 된다.** 이것은 한 화면
-  안의 패널 전환이라 Tabs의 원래 용도에 맞는다. 하단 4탭과는 다른 문제다
+- **`MiniPlayer`와 `PlayerSheet`는 `App.jsx`에 마운트한다.** 특정 탭 소유가 아니다
+- **화면 안의 필터 전환(전체/노래/앨범 같은 줄)에는 shadcn `tabs`가 맞다.**
+  하단 5탭과는 다른 문제다
+- **뎁스 2를 넘기지 말 것** — 라이브러리에서 플레이리스트 상세로 **바로** 간다.
+  중간에 목록 화면을 하나 더 두면 3뎁스가 된다 (`08` §뎁스 주의)
 
 - **`PlayerSheet`는 `App.jsx`에 마운트한다.** 특정 탭 소유가 아니다. 어느 탭에서
   재생을 시작해도 같은 시트가 뜬다
@@ -176,11 +190,16 @@ listEntries()            upsertEntry(entry)       entriesByMood(mood)
 
 ## 8. 하지 말 것 — 이미 결정된 사항
 
-- **수동 플레이리스트 CRUD** — 기분 태그가 그 역할을 한다. 레이아웃에도 없다
+- **장르별 · 앨범 · 추천 아티스트** — 태그 파싱 없이는 데이터가 없다 (`08`)
+- **이퀄라이저 · 크로스페이드 · 음질 설정** — 크로스페이드는 오디오 엘리먼트 2개가
+  필요해 §1 규칙과 충돌한다
+- **프로필 사진 · 프로필 수정** — 계정이 없다
+- **자유 해시태그** — 기분 어휘는 `MoodId` 5개뿐이다 (`08`)
 - **푸시 알림** — 백엔드가 없어 불가능하다. 설정의 `알림`은 **인앱·로컬 알림까지만**
 - **계정 아이콘을 계정 기능으로 만드는 것** — 아이콘은 레이아웃대로 두되
   로그인·회원가입·프로필로 이어지지 않는다 (`08` §구현상 주의)
-- 제스처 전부 (스와이프·롱프레스·드래그 정렬) — 보이는 버튼만
+- 제스처 전부 (스와이프·롱프레스·**드래그 정렬**) — 보이는 버튼만.
+  **플레이리스트 순서 변경도 위/아래 버튼으로** 한다. IA의 드래그 핸들(≡)은 쓰지 않는다
 - ID3 / MP4 태그 파싱 — 제목은 파일명에서, 아티스트는 선택 입력
 - 앨범 아트 **추출** — File API로 안 나오고 태그 파싱은 범위 밖이다
   - 번들 곡은 `artworkUrl`로 아트를 함께 넣는다
