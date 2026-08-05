@@ -37,6 +37,9 @@ This supersedes the earlier "plain HTML/CSS/JS, no framework" rule, which came f
 scope rather than preference. A framework answer is no longer wrong here.
 
 - `nyangbti/` is going to **React + shadcn/ui**. See `nyangbti/docs/06-design-system.md`.
+- `team-project/` is **Music Diary** (음악 일기), React + Vite + shadcn. The name is
+  **frozen** — see `DECISIONS.md`. Do not propose renaming it, and do not "correct"
+  the older names left in `team-project/docs/prompts/`; those are a verbatim record.
 - `team-project/` is **not** covered by this — the approval was asked and granted for 냥BTI.
   Confirm separately before assuming it applies there.
 - Still a **web app that runs in a browser without installation.** The approval widened the

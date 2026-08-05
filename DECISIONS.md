@@ -2,6 +2,36 @@
 
 Newest first. Records *why*, so choices aren't re-litigated later.
 
+## 2026-08-05 — team project app name is **Music Diary**. Frozen.
+
+Korean display name **음악 일기**. `localStorage` prefix `musicdiary:`.
+
+**Do not rename again.** It changed three times in one day — Warm Vinyl →
+Vibe Vinyl → TuneBox → Music Diary. Today each rename cost a `git mv` and a
+find-replace because no code existed. That window is closing: once the teammate
+starts, the same change drags component names, the storage key, deploy paths,
+the Figma file and the deck along with it. The storage key is the worst of
+them — changing it after anyone has saved data means writing a migration into a
+four-day project.
+
+If it must change anyway, it changes **before** the name reaches the
+presentation, and the storage prefix moves in the same commit.
+
+`Warm Vinyl` is kept as the **theme** name in 설정, where the teammate's layout
+already had a row for it. One theme only; no switching.
+
+**Known tension, decided deliberately:** the app is named after one of its own
+five tabs (`일기`). A fifth of the product owns the title. Accepted because the
+diary is exactly what makes this pass `03`'s input → decision → result → saved
+reflection test — the reason it is not a Melon clone. The name points at the
+differentiator, which `TuneBox` did not. Screens say `일기` for the tab and
+`음악 일기` for the app.
+
+**Prompt records keep the old names.** `team-project/docs/prompts/` is a
+verbatim log of instructions actually sent to a model, and 3-2 makes it a
+graded artifact. Rewriting it to match a later decision would make the record
+disagree with what happened.
+
 ## 2026-08-03 — deck is generated from a script, per Srit's design system
 
 Srit supplied his own **Slide Design Prompt Rev 7** (in the vault at
