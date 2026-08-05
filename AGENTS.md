@@ -22,11 +22,17 @@ saving quota. `nyangbti/` is fine to work in.
 Each has its own `docs/`, `src/`, `assets/`. Research, personas, and design for one never go in
 the other, even if the topics end up similar — they have different constraints.
 
-## Stack limits — course scope, not preference
+## Stack — frameworks approved 2026-08-05
 
-**Plain HTML, CSS, and JavaScript. No React, no Vue, no framework.** It's outside what the
-course covers, so a framework answer is wrong here even when it would be better engineering.
-Target a web app that runs in a browser without installation.
+**React, Vue, and Svelte are all approved by the instructor** (이수경 선생님, 2026-08-05).
+This supersedes the earlier "plain HTML/CSS/JS, no framework" rule, which came from course
+scope rather than preference. A framework answer is no longer wrong here.
+
+- `nyangbti/` is going to **React + shadcn/ui**. See `nyangbti/docs/06-design-system.md`.
+- `team-project/` is **not** covered by this — the approval was asked and granted for 냥BTI.
+  Confirm separately before assuming it applies there.
+- Still a **web app that runs in a browser without installation.** The approval widened the
+  framework choice, not the form factor. No native targets.
 
 **Mobile-first (confirmed 2026-08-04).** The phone is the primary environment and
 desktop is the adaptation — not the other way round, and not "responsive if time

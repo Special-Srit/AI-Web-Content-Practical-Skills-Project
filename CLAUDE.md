@@ -44,7 +44,7 @@ different constraints and the 냥BTI work is bounded by the instructor's example
 | Course | AI 활용 웹콘텐츠 실무역량 과정, 2026-08-03 → 08-14 |
 | Presentation | 2026-08-14 — mandatory attendance |
 | Usable build days | ~7.5 (presentation day, field trip, diagnostic eat the rest) |
-| Stack | plain HTML · CSS · JavaScript — **no React/Vue** (course scope) |
+| Stack | **React, Vue, Svelte all approved 2026-08-05** by the instructor, superseding the earlier plain-HTML-only scope rule. 냥BTI goes React + shadcn/ui (`nyangbti/docs/06-design-system.md`). The approval was granted for 냥BTI — confirm before assuming it covers `team-project/` |
 | Form factor | web app: runs in a browser without install. **Mobile-first — the phone layout is the primary target, desktop is the adaptation.** Not "responsive if time allows" |
 | Instructor | 이수경 선생님 |
 
