@@ -4,9 +4,20 @@ Decided 2026-08-05 by the team, after the teammate's concept design.
 **Supersedes the product framing in `07-music-player-plan.md`.** The A–B loop
 practice tool is dropped.
 
-`07` is not obsolete — its audio rules, platform reality, accessibility list,
-error taxonomy and AI correction log all still apply. Read it for those. Only
-its *product framing*, *MVP scope* and *data contract* are replaced here.
+`07` is **not** wholesale binding — that blanket claim was wrong (sol review,
+2026-08-05). Its out-of-scope table bans bundled audio, recommendations,
+playlist CRUD and a separate Home tab; its audio section specifies A–B looping;
+its error taxonomy carries `BAD_LOOP_RANGE`; its work split and fallbacks assume
+loops and practice logs. All of that is superseded.
+
+**Whitelist — only these parts of `07` remain in force:**
+
+- Platform reality (no iPhone; iOS is a design target the team cannot verify)
+- Audio format rules and generic playback lifecycle, **excluding A–B loop logic**
+- Korean search rules
+- Security rules (no `innerHTML` / `dangerouslySetInnerHTML` on untrusted fields)
+- The accessibility list
+- The AI correction log
 
 ## Product framing
 
@@ -36,14 +47,20 @@ each track felt, which a streaming service deliberately does not do.
 **No catalogue. No licences. The repo is public.**
 
 Shipping commercial tracks would be infringement, permanently visible in git
-history. Streaming APIs are out — no backend, and none of Spotify/YT Music/Melon
-permit this use.
+history.
+
+Streaming integrations are cut **by scope, not by law** (correction, sol review
+2026-08-05). Spotify's Web Playback SDK and YouTube's IFrame API do permit
+browser playback under their own conditions; the earlier claim that none permit
+this use was unsupported. They are out because they add authentication, network
+dependence, service-specific UX and policy obligations, and because they
+undermine the point of a local library — not because they are prohibited.
 
 Two legal sources, both used:
 
 | Source | Role | Rules |
 | --- | --- | --- |
-| **Bundled demo set** | So 08-14 works without depending on a laptop's file picker | **CC or public-domain only.** Every file's licence and attribution recorded in `assets/audio/CREDITS.md` before it is committed |
+| **Bundled demo set** | So 08-14 works without depending on a laptop's file picker | **Verified CC0 or CC BY only** (see rules below). Every file recorded in `public/audio/CREDITS.md` before it is committed, and credited inside the deployed app |
 | **User's own files** | The real library | File picker, as in `07`. Never uploaded anywhere |
 
 Practical limits for the bundled set:
@@ -53,17 +70,39 @@ Practical limits for the bundled set:
   cleanup on 08-05, and audio bloats git far worse than images.
 - MP3 or AAC only (`07`'s format rules — MP3/AAC are the only universally safe
   decode targets).
-- Candidate sources to verify licence on, one by one: Free Music Archive,
-  ccMixter, Pixabay Music, Jamendo, incompetech. **Verify each track's licence
-  individually** — "the site is free" is not a licence.
-- If the licence cannot be established in under a minute, drop the track.
+- **Accept only verified CC0 or CC BY recordings.** Not "CC or public domain"
+  broadly (sol review) — NC depends on use rather than student status, SA governs
+  redistributed adaptations, and ND can forbid distributing a trimmed excerpt.
+  A public-domain *composition* does not make a modern *recording* public domain.
+- **Pixabay is removed from the candidate list.** It uses a proprietary Content
+  License, not CC, and prohibits standalone redistribution — which is exactly what
+  raw audio committed to a public music-player repo is.
+- Remaining candidates, each **verified per track, never per site**:
+  - **Free Music Archive** — licences are per-track and include NC/ND/SA; some
+    retired tracks are listen-only
+  - **ccMixter** — remixes can carry multiple contributors and sample sources; the
+    whole chain must permit redistribution
+  - **Jamendo Music** only (individually verified CC0/CC BY). **Not** Jamendo
+    Licensing, which is a separate paid marketplace, and not API-derived files
+  - **incompetech** — free option is CC BY and requires **visible** credit; the
+    no-attribution route is paid
+- Record per track: 제목 · 제작자 · 출처 URL · 정확한 라이선스와 버전 · 받은 날짜 ·
+  **자르거나 변환했다는 사실**
+- **Credits must appear in the deployed app**, not only in the repo — CC BY
+  requires credit where users can readily find it
+- If the licence cannot be established with certainty, drop the track.
 
-**Album artwork does not exist.** The File API returns filename, size and
-lastModified — not title, artist, or artwork (`07`). The concept design's album
-covers must therefore be either (a) shipped with the bundled demo set under the
-same licence check, or (b) a generated placeholder — a colour/pattern derived
-from the mood tag. **(b) is the honest default for user-picked files**, and it
-should be designed as a real state, not treated as a missing image.
+**Embedded artwork is unavailable without tag parsing.** `File` exposes `name`
+and `lastModified` and inherits `size`, `type` and the bytes from `Blob` — but it
+does not parse music tags. Artwork may well be embedded in the bytes; reading it
+would mean handling ID3v2 `APIC` frames for MP3 and `meta`/`ilst`/`covr` atoms for
+MP4/M4A, including encodings and malformed data. **Tag parsing stays out of
+scope**, so in practice there is no cover art for picked files.
+
+Covers are therefore either (a) shipped with the bundled demo set under the same
+licence check, or (b) a generated placeholder derived from the mood tag.
+**(b) is the default for user-picked files**, and it must be designed as a real
+state, not treated as a missing image.
 
 ## MVP scope — four destinations
 
@@ -103,14 +142,6 @@ which `07`'s two-destination structure did not.
    플레이리스트까지 만들 필요가 있는지 4일 일정 안에서 재검토할 것.
    대안 — 플레이리스트를 **기분별 자동 묶음**으로 정의하면 둘이 하나가 된다
 
-- **`마이` must not look like an account.** `03` flags fake multi-user state as
-  a dead end, and 냥BTI hit the identical trap (04-ia §4-1). No profile photo,
-  no 로그인, no 회원 정보 — settings and data controls only. The concept design's
-  avatar in the header should become a settings entry or be removed.
-- **오늘의 추천 is a filter over the user's own library**, not a catalogue.
-  `JAZZ 24곡` style counts only ever reflect what the user actually has.
-- Player is a sheet over 홈, not a fifth tab (kept from `07`).
-
 ## Data contract — freeze this before either person writes code
 
 Replaces `07`'s Track/LoopMark/Attempt model.
@@ -123,8 +154,15 @@ Replaces `07`'s Track/LoopMark/Attempt model.
 ```
 
 - Keys — `warmvinyl:v1:tracks | diary | schemaVersion`
-- **Re-link picked files on `fileName + size + lastModified`**, as in `07`.
-  A `File` handle does not survive a reload; the metadata does.
+- **Re-link picked files on `fileName + size + lastModified`** — but treat this as
+  a **heuristic, not an identity** (sol review). Different files can share the
+  tuple, copies preserve it, and renaming or a changed timestamp produces false
+  negatives. Auto-link only on a unique match; on collision make the user choose;
+  always allow manual re-linking. Do not add hashing unless testing shows the
+  heuristic is inadequate.
+- Reselection is **this MVP's storage decision, not an API limit.** A `File` is
+  serializable and could be persisted via IndexedDB; we store metadata only in
+  `localStorage` and accept re-picking.
 - `moods` is an array — a track can be both 차분함 and 비 오는 날.
 - Mood vocabulary is **fixed and small** (5–6), decided before coding. A free
   text mood field makes the 추천 filter meaningless.
@@ -133,7 +171,9 @@ Replaces `07`'s Track/LoopMark/Attempt model.
 
 ## Still binding from `07`
 
-- Audio format rules, `play()` being async and throwing `NotAllowedError`
+- Audio format rules, and that `play()` returns a **Promise that rejects** with a
+  `DOMException` named `NotAllowedError` — use `try/catch` around `await` and test
+  `error.name`. It does not throw synchronously
 - No iPhone on the team — iOS is a design target the team cannot verify
 - `textContent`, never `innerHTML`, for any filename or user-entered field
 - Accessibility list, error taxonomy, the AI correction log
