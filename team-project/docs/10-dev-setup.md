@@ -178,4 +178,4 @@ npm run dev -- --host
 ## Related
 
 - `09-implementation-spec.md` — 구조 · 인터페이스 · 규칙
-- `08-concept-warm-vinyl.md` — 제품 결정 · 자료 구조
+- `08-concept-tunebox.md` — 제품 결정 · 자료 구조

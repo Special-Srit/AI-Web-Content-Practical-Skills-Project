@@ -1,4 +1,4 @@
-# 08 · Concept decided — Warm Vinyl (mood-first local player)
+# 08 · Concept decided — TuneBox (mood-first local player)
 
 Decided 2026-08-05 by the team, after the teammate's concept design.
 **Supersedes the product framing in `07-music-player-plan.md`.** The A–B loop
@@ -18,6 +18,16 @@ loops and practice logs. All of that is superseded.
 - Security rules (no `innerHTML` / `dangerouslySetInnerHTML` on untrusted fields)
 - The accessibility list
 - The AI correction log
+
+## 이름 — TuneBox (2026-08-05 확정)
+
+- 앱 이름은 **TuneBox**
+- 팀원 레이아웃의 `Warm Vinyl` / `Vibe Vinyl`은 앱 이름이 아니라 **테마 이름**으로
+  남긴다 — 설정의 `테마 설정` 항목이 그 자리다
+- **다만 테마는 하나뿐이다.** 여러 테마를 만들 일정이 아니다. `테마 설정`은 현재
+  적용된 이름을 보여주는 정도로 두고, 전환 기능은 만들지 않는다
+- `localStorage` 키 접두사도 `tunebox:`로 맞췄다. **코드가 아직 없을 때 바꿔서
+  비용이 0이다** — 나중에 바꾸면 저장된 데이터 마이그레이션이 따라온다
 
 ## Product framing
 
@@ -190,7 +200,7 @@ state, not treated as a missing image.
 - `error` — `{ code, message }` 또는 `null`. 코드는 `07`의 에러 분류를 따르되
   **`BAD_LOOP_RANGE`는 제외**한다 (A–B 루프가 사라졌으므로)
 - **`assetUrl`이 없으면 번들 곡을 재생할 방법이 없다** — sol 검토에서 잡힌 구멍
-- Keys — `warmvinyl:v1:tracks | diary | schemaVersion`
+- Keys — `tunebox:v1:tracks | diary | schemaVersion`
 - **`MoodId`는 안정적인 영문 식별자**이고 화면 라벨과 분리한다. 라벨을 바꿔도
   저장된 데이터가 깨지지 않게 하기 위한 것
 
@@ -217,7 +227,7 @@ state, not treated as a missing image.
   고르게 하는 쪽을 택했다
 - 로드 시 **형식 검증**을 하고, 깨진 데이터는 초기화 경로로 보낸다.
   `schemaVersion`은 있는 것만으로는 아무 일도 하지 않는다
-- **전체 삭제는 `warmvinyl:*` 키만 지운다.** `localStorage.clear()` 금지 —
+- **전체 삭제는 `tunebox:*` 키만 지운다.** `localStorage.clear()` 금지 —
   같은 오리진의 다른 페이지 데이터까지 날아간다
 - `title`은 picked 파일의 파일명에서 유도하고 `artist`는 선택 입력이다. ID3 파싱 없음
 
