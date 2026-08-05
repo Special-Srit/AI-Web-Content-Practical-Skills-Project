@@ -65,8 +65,8 @@ Two legal sources, both used:
 
 Practical limits for the bundled set:
 
-- Target **8–12 tracks, 30–60 s each**, not 20 full songs. Keep the whole
-  folder **under ~20 MB** — this repo already had a 14 MB → 1.6 MB history
+- Target **4–5 tracks, 30–60 s each** (cut from 8–12, sol review). Keep the whole
+  folder **well under ~20 MB** — this repo already had a 14 MB → 1.6 MB history
   cleanup on 08-05, and audio bloats git far worse than images.
 - MP3 or AAC only (`07`'s format rules — MP3/AAC are the only universally safe
   decode targets).
@@ -106,68 +106,102 @@ state, not treated as a missing image.
 
 ## MVP scope — four destinations
 
-The concept design's bottom nav is kept. It satisfies 3-2's 모바일 앱 하단 4~5,
-which `07`'s two-destination structure did not.
+**탭 4개 확정 (Srit, 2026-08-05, sol 검토 반영)** — `홈` · `보관함` · `일기` · `설정`.
+3-2의 모바일 앱 하단 4~5를 만족한다.
 
-**탭 4개 확정 (Srit, 2026-08-05)** — `home` · `library` · `explore` · `myPage`.
-아래 배치는 그 4개에 모든 내용을 빠짐없이 넣은 것이며, 표시 아래 두 항목은
-**되돌릴 수 있는 배치 판단**이다.
+앞선 `home / library / explore / myPage` 안은 폐기했다. 이유는 취향이 아니라 결함
+두 가지였다 — **트랙 목록·기분 태그 편집·제목 수정이 어느 탭에도 없었고**, 앱의
+차별점인 기분 일기가 하위에 묻혀 있었다.
 
 | Tab | Contents | Notes |
 | --- | --- | --- |
-| **홈** | 기분 선택 → 오늘의 추천 → 지금 재생 중 → 오늘의 기분 일기(쓰기) | The concept design's screen |
-| **라이브러리** | 사용자가 만들고 저장한 플레이리스트 · **기분 일기 히스토리** [배치 판단] | "내가 쌓은 것"이 모이는 곳 |
-| **탐색** | 곡 검색 (제목·아티스트·파일명) · **파일 추가** [배치 판단] | 곡을 찾고 들여오는 곳 |
-| **마이페이지** | 저장 용량 · 전체 삭제 · 앱 정보 | **계정·로그인 없음** |
+| **홈** | 기분 선택 → 오늘의 추천 → 지금 재생 중 | 컨셉 디자인의 화면 |
+| **보관함** | **전체 트랙 목록** · 검색 · 파일 추가 · 기분 태그 편집 · 제목/아티스트 수정 | 곡에 관한 모든 것 |
+| **일기** | 오늘의 일기 쓰기 · 날짜별 히스토리 · 기분별 보기 | 최상위. 이게 차별점이다 |
+| **설정** | 음원 크레딧 · 전체 삭제 · 앱 정보 | **계정·로그인 없음** |
 
-- **`마이페이지` must not look like an account.** `03` flags fake multi-user
-  state as a dead end, and 냥BTI hit the identical trap (04-ia §4-1). No profile
-  photo, no 로그인, no 회원 정보 — settings and data controls only. The concept
-  design's header avatar should become a settings entry or be removed.
-- **오늘의 추천 is a filter over the user's own library**, not a catalogue.
-  `JAZZ 24곡` style counts only ever reflect what the user actually has.
-- **탐색 searches the user's own tracks only.** There is no catalogue to
-  discover from. Search covers title / artist / fileName per `07`'s Korean
-  search rules (NFC normalise, token AND-match).
-- Player is a sheet over 홈, not a fifth tab (kept from `07`).
+- **플레이어는 전역 시트다** — 홈 전용이 아니다. 보관함이나 일기에서 재생을
+  시작해도 같은 시트가 뜬다. 탭이 아니다
+- **`설정`을 계정 화면처럼 만들지 말 것.** `03`은 가짜 다중 사용자 상태를 막다른
+  길로 분류했고 냥BTI도 같은 함정을 밟았다(04-ia §4-1). 프로필 사진·로그인·회원
+  정보 없음. 컨셉 디자인 헤더의 아바타는 설정 진입점으로 바꾸거나 없앤다
+- **오늘의 추천은 내 라이브러리를 거르는 것**이지 카탈로그가 아니다. `JAZZ 24곡`
+  같은 숫자는 사용자가 실제로 가진 곡만 반영한다
+- **검색 대상은 내 트랙뿐이다.** title / artist / fileName에 대해 `07`의 한글 검색
+  규칙(NFC 정규화, 토큰 AND 매치)을 적용
 
-### 두 가지 미해결 — 팀에서 확정할 것
+### 잘라낸 것 (2026-08-05, sol 검토 반영)
 
-1. **기분 일기 히스토리의 위치.** 원래 `내 마음` 탭에 있었으나 탭 구성이 바뀌며
-   갈 곳이 없어졌다. 여기서는 라이브러리에 두었지만, **이 앱이 플레이어가 아닌
-   근거가 바로 이 일기**(`03`의 saved reflection)이므로 묻히면 차별점이 사라진다.
-   대안 — 라이브러리 안에 탭으로 분리 / 홈에서 1뎁스 아래 / 탭 이름을 바꿔 되살리기
-2. **플레이리스트와 기분 태그가 조직화 수단으로 중복된다.** `06`은 playlists
-   CRUD를 트랩으로 분류했다. 기분 태그가 이미 곡을 묶는 축이라면, 수동
-   플레이리스트까지 만들 필요가 있는지 4일 일정 안에서 재검토할 것.
-   대안 — 플레이리스트를 **기분별 자동 묶음**으로 정의하면 둘이 하나가 된다
+일정 안에 들어가게 만들기 위한 결정이다. 되돌리려면 먼저 상의할 것.
+
+| 잘라낸 것 | 이유 |
+| --- | --- |
+| **수동 플레이리스트 CRUD** | 기분 태그와 조직화 축이 중복된다. `06`이 트랩으로 분류한 항목이기도 하다 |
+| 재생목록(queue) · 셔플 · 반복 | 상태와 화면이 늘어나는 데 비해 차별점에 기여하지 않는다 |
+| 저장 용량 미터 | 설정에 숫자 하나 띄우려고 계산 로직을 만들 이유가 없다 |
+| 번들 음원의 앨범 아트 | 기분 기반 플레이스홀더 하나로 통일 |
+| 번들 데모 곡 수 | 8~12곡 → **4~5곡**으로 축소 |
 
 ## Data contract — freeze this before either person writes code
 
-Replaces `07`'s Track/LoopMark/Attempt model.
+`07`의 Track/LoopMark/Attempt 모델을 대체한다.
 
 ```js
+// Track
 { id, title, artist, fileName, size, lastModified, durationSec,
-  addedAt, source: 'bundled' | 'picked', moods: [] }      // Track
-{ id, date, mood, text, trackIds: [] }                     // DiaryEntry
-{ trackId, status, positionSec, queue: [], repeat, shuffle } // PlayerState (memory only)
+  addedAt, source: 'bundled' | 'picked',
+  assetUrl,        // 번들 곡의 재생 경로. picked면 null
+  moods: [MoodId] }
+
+// DiaryEntry
+{ id, localDate, createdAt, mood: MoodId, text, trackIds: [] }
+
+// PlayerState — 메모리만
+{ trackId, status, positionSec, error }
 ```
 
+- `status` — `'idle' | 'loading' | 'playing' | 'paused' | 'error'`. 이 5개가 전부다
+- `error` — `{ code, message }` 또는 `null`. 코드는 `07`의 에러 분류를 따르되
+  **`BAD_LOOP_RANGE`는 제외**한다 (A–B 루프가 사라졌으므로)
+- **`assetUrl`이 없으면 번들 곡을 재생할 방법이 없다** — sol 검토에서 잡힌 구멍
 - Keys — `warmvinyl:v1:tracks | diary | schemaVersion`
-- **Re-link picked files on `fileName + size + lastModified`** — but treat this as
-  a **heuristic, not an identity** (sol review). Different files can share the
-  tuple, copies preserve it, and renaming or a changed timestamp produces false
-  negatives. Auto-link only on a unique match; on collision make the user choose;
-  always allow manual re-linking. Do not add hashing unless testing shows the
-  heuristic is inadequate.
-- Reselection is **this MVP's storage decision, not an API limit.** A `File` is
-  serializable and could be persisted via IndexedDB; we store metadata only in
-  `localStorage` and accept re-picking.
-- `moods` is an array — a track can be both 차분함 and 비 오는 날.
-- Mood vocabulary is **fixed and small** (5–6), decided before coding. A free
-  text mood field makes the 추천 filter meaningless.
-- `title` derives from the filename for picked files; `artist` is optional and
-  user-editable. No ID3 parsing (`07`).
+- **`MoodId`는 안정적인 영문 식별자**이고 화면 라벨과 분리한다. 라벨을 바꿔도
+  저장된 데이터가 깨지지 않게 하기 위한 것
+
+  | MoodId | 라벨 |
+  | --- | --- |
+  | `calm` | 차분함 |
+  | `flutter` | 설렘 |
+  | `comfort` | 위로 |
+  | `focus` | 집중 |
+  | `longing` | 그리움 |
+
+- **같은 어휘를 음악 필터와 일기에 함께 쓴다.** 목록 하나, 용도 둘
+- `localDate`는 `YYYY-MM-DD` 로컬 기준 문자열, `createdAt`은 ISO 타임스탬프.
+  **하루 한 건**이며 같은 날 다시 쓰면 덮어쓴다
+- **트랙을 지우면 일기의 `trackIds`가 고아가 된다.** 일기는 지우지 않고, 사라진
+  트랙은 "삭제된 곡"으로 표시한다. 기록이 조용히 바뀌면 안 된다
+- **Re-link picked files on `fileName + size + lastModified`** — 단 이것은
+  **식별자가 아니라 휴리스틱**이다(sol 검토). 서로 다른 파일이 같은 튜플을 가질 수
+  있고, 복사본은 튜플을 보존하며, 이름이나 타임스탬프가 바뀌면 못 찾는다.
+  유일하게 일치할 때만 자동 연결하고, 충돌하면 사용자가 고르게 하며, 수동 재연결을
+  항상 허용한다. 해싱은 휴리스틱이 부족하다는 게 확인되기 전에는 넣지 않는다
+- Reselection is **this MVP's storage decision, not an API limit.** `File`은
+  직렬화 가능하고 IndexedDB에 넣을 수도 있다. 우리는 메타데이터만 저장하고 다시
+  고르게 하는 쪽을 택했다
+- 로드 시 **형식 검증**을 하고, 깨진 데이터는 초기화 경로로 보낸다.
+  `schemaVersion`은 있는 것만으로는 아무 일도 하지 않는다
+- **전체 삭제는 `warmvinyl:*` 키만 지운다.** `localStorage.clear()` 금지 —
+  같은 오리진의 다른 페이지 데이터까지 날아간다
+- `title`은 picked 파일의 파일명에서 유도하고 `artist`는 선택 입력이다. ID3 파싱 없음
+
+### 저장·프라이버시에 관한 정직한 표현
+
+- "파일이 업로드되지 않는다"는 **API 보장이 아니라 구현 약속**이다. 분석 스크립트나
+  서드파티 런타임 스크립트를 넣지 않고, 파일 선택 후 네트워크 탭으로 확인한다
+- GitHub Pages 프로젝트 사이트는 **소유자 단위로 오리진을 공유**한다. 같은 오리진의
+  다른 페이지가 같은 `localStorage`에 접근할 수 있다. 키 네임스페이스는 충돌을 막을
+  뿐 접근을 막지 못한다. 앱 안에서 이 점을 숨기지 말고 그대로 알린다
 
 ## Still binding from `07`
 
@@ -181,12 +215,11 @@ Replaces `07`'s Track/LoopMark/Attempt model.
 
 ## Open — decide with the teammate
 
-1. **Mood vocabulary** — which 5–6, and their Korean labels
-2. **Bundled demo set** — who sources it and verifies licences
-3. **Artwork strategy** — generated placeholder vs bundled art vs both
-4. **Stack** — the React/Vue/Svelte approval was granted for 냥BTI. Confirm it
-   covers this project before assuming it. `07`'s plain-JS assumption is still
-   the lower-risk choice for two people in four days.
+1. ~~Mood vocabulary~~ → **정함**: calm·flutter·comfort·focus·longing (§Data contract)
+2. **Bundled demo set** — 누가 구하고 라이선스를 확인할지. **CC0 또는 CC BY만**
+3. ~~Artwork strategy~~ → **정함**: 기분 기반 플레이스홀더 하나로 통일. 번들 아트 없음
+4. ~~Stack~~ → **정함**: React + Vite. 강사가 웹에서 보이는 것이면 무엇이든 허용
+5. 기분 플레이스홀더의 시각적 형태 — 디자인 단계에서
 
 ## The concept design is a 무드보드, not a wireframe
 

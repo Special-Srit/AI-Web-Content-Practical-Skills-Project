@@ -25,7 +25,7 @@
 
 - 오디오 엘리먼트를 컴포넌트가 소유하면, 탭을 옮기거나 리렌더가 일어날 때
   엘리먼트가 다시 만들어지면서 **재생이 끊긴다**
-- 홈 → 라이브러리 → 탐색을 오가도 음악은 계속 나와야 한다. 즉 엘리먼트의 수명은
+- 홈 → 보관함 → 일기를 오가도 음악은 계속 나와야 한다. 즉 엘리먼트의 수명은
   화면의 수명과 무관해야 한다
 
 따라서:
@@ -58,13 +58,14 @@ team-project/src/
     diary.js              기분 일기 CRUD
   moods.js                기분 5종 상수 (단일 출처)
   screens/
-    Home.jsx  Library.jsx  Explore.jsx  MyPage.jsx
+    Home.jsx  Archive.jsx  Diary.jsx  Settings.jsx
   components/
     NavFooter.jsx  PlayerSheet.jsx  TrackRow.jsx
     MoodPicker.jsx  DiaryCard.jsx  EmptyState.jsx
+    MoodArtwork.jsx       기분 기반 커버 플레이스홀더
   styles/
 public/
-  audio/                  번들 데모 음원 (CC·퍼블릭 도메인만)
+  audio/                  번들 데모 음원 4~5곡 (검증된 CC0·CC BY만)
   audio/CREDITS.md        곡별 라이선스·출처. 커밋 전에 채운다
 ```
 
@@ -84,13 +85,17 @@ getState()     → PlayerState
 
 // store/tracks.js
 listTracks()             addTracks(fileList)      removeTrack(id)
-setMoods(trackId, moods) resolveSrc(track) → objectURL | 번들 경로 | null
+setMoods(trackId, moods) updateMeta(id, {title, artist})
+resolveSrc(track)  → track.assetUrl (bundled) | objectURL (picked) | null
 
 // store/diary.js
 listEntries()            upsertEntry(entry)       entriesByMood(mood)
+// 하루 한 건. 같은 localDate로 upsert하면 덮어쓴다
 ```
 
 - `resolveSrc`가 `null`을 돌려주는 경우가 정상 경로에 존재한다 → §5
+- **번들 곡은 `track.assetUrl`로 재생한다.** 이 필드가 없으면 번들 곡을 재생할
+  방법이 아예 없다 (sol 검토에서 잡힌 구멍)
 
 ## 4. 상태 — 무엇이 어디 사는가
 
@@ -102,10 +107,13 @@ listEntries()            upsertEntry(entry)       entriesByMood(mood)
 | 스키마 버전 | `warmvinyl:v1:schemaVersion` | 나중에 필드가 늘 때 필요 |
 
 - 자료 구조는 `08` §Data contract가 원본이다. **여기서 바꾸지 말 것**
-- **`File` 핸들은 새로고침을 넘기지 못한다.** 저장되는 것은 메타데이터뿐이고,
-  재방문 시 `fileName + size + lastModified`로 다시 연결한다. 연결에 실패한
-  트랙은 목록에 남되 **재생 불가 상태로 표시**하고 다시 고르게 한다 — 조용히
-  숨기면 사용자는 곡이 사라졌다고 생각한다
+- **메타데이터만 저장하고 파일은 다시 고르게 한다.** 이는 API 한계가 아니라
+  이 MVP의 결정이다 — `File`은 직렬화 가능해서 IndexedDB에 넣을 수도 있다
+- 재방문 시 `fileName + size + lastModified`로 다시 연결하되, 이것은
+  **식별자가 아니라 휴리스틱**이다. 유일하게 일치할 때만 자동 연결하고,
+  둘 이상 걸리면 사용자가 고르게 하며, 수동 재연결 경로를 항상 남긴다
+- 연결에 실패한 트랙은 목록에 남되 **재생 불가 상태로 표시**하고 다시 고르게
+  한다 — 조용히 숨기면 사용자는 곡이 사라졌다고 생각한다
 - 번들 데모 음원은 이 문제가 없다. 발표 시연이 파일 선택에 의존하지 않는 이유다
 
 ## 5. 반드시 처리해야 하는 실패 경로
@@ -123,16 +131,19 @@ listEntries()            upsertEntry(entry)       entriesByMood(mood)
 
 ## 6. 화면 ↔ 컴포넌트
 
-`08` §MVP scope의 탭 4개를 그대로 따른다. 플레이어는 **탭이 아니라 홈 위에 뜨는 시트**.
+`08` §MVP scope의 탭 4개를 그대로 따른다. 플레이어는 **탭이 아니라 전역 시트**.
 
 | 탭 | 화면 | 주요 컴포넌트 |
 | --- | --- | --- |
-| 홈 | 기분 선택 → 오늘의 추천 → 지금 재생 중 → 오늘의 일기 | `MoodPicker` `TrackRow` `DiaryCard` |
-| 라이브러리 | 플레이리스트 · 기분 일기 히스토리 | `TrackRow` `DiaryCard` |
-| 탐색 | 곡 검색 · 파일 추가 | `TrackRow` `EmptyState` |
-| 마이페이지 | 저장 용량 · 전체 삭제 · 앱 정보 | — |
+| 홈 | 기분 선택 → 오늘의 추천 → 지금 재생 중 | `MoodPicker` `TrackRow` `MoodArtwork` |
+| 보관함 | 전체 트랙 · 검색 · 파일 추가 · 기분 태그·제목 수정 | `TrackRow` `MoodPicker` `EmptyState` |
+| 일기 | 오늘 쓰기 · 날짜별 히스토리 · 기분별 보기 | `DiaryCard` `MoodPicker` `EmptyState` |
+| 설정 | 음원 크레딧 · 전체 삭제 · 앱 정보 | — |
 
-- **마이페이지를 계정 화면처럼 만들지 말 것.** 로그인·프로필 사진·회원 정보 없음
+- **`PlayerSheet`는 `App.jsx`에 마운트한다.** 특정 탭 소유가 아니다. 어느 탭에서
+  재생을 시작해도 같은 시트가 뜬다
+- **설정을 계정 화면처럼 만들지 말 것.** 로그인·프로필 사진·회원 정보 없음
+- **전체 삭제는 `warmvinyl:*` 키만 지운다.** `localStorage.clear()` 금지
 - 검색은 **내 트랙만** 대상이다. 카탈로그가 없다
   - 한글 검색 — 저장 필드와 질의를 **NFC 정규화**, 영문 소문자화, 질의를 토큰으로
     쪼개 **전 토큰이 title·artist·fileName 중 어딘가에 매치**되면 통과
@@ -151,13 +162,19 @@ listEntries()            upsertEntry(entry)       entriesByMood(mood)
 
 ## 8. 하지 말 것 — 이미 결정된 사항
 
+- **수동 플레이리스트 · 재생목록(queue) · 셔플 · 반복 · 저장 용량 미터** —
+  2026-08-05에 일정상 잘라냈다 (`08` §잘라낸 것). 만들지 말 것
 - 제스처 전부 (스와이프·롱프레스·드래그 정렬) — 보이는 버튼만
 - ID3 / MP4 태그 파싱 — 제목은 파일명에서, 아티스트는 선택 입력
 - 앨범 아트 추출 — File API로 안 나온다. 기분 기반 플레이스홀더가 기본값이며,
   **깨진 이미지가 아니라 정식 상태로 디자인**한다
 - 로그인·계정·동기화·실시간 기능
-- 저작권 있는 음원을 저장소에 넣는 것. `public/audio/`는 **CC·퍼블릭 도메인만**,
-  `CREDITS.md`를 **커밋 전에** 채운다. 저장소는 공개이고 git 기록은 영구다
+- 저작권 있는 음원을 저장소에 넣는 것. `public/audio/`는 **검증된 CC0·CC BY만**
+  (`08` §The content problem). `CREDITS.md`를 **커밋 전에** 채우고, **크레딧을
+  앱 화면(설정)에도 노출**한다 — CC BY는 사용자가 쉽게 찾을 수 있는 곳의 표기를
+  요구한다. 저장소는 공개이고 git 기록은 영구다
+- 분석 스크립트·서드파티 런타임 스크립트를 넣는 것 — "파일이 업로드되지 않는다"는
+  약속을 지킬 수 없게 된다
 
 ## 9. 작업 흐름
 
@@ -174,11 +191,8 @@ listEntries()            upsertEntry(entry)       entriesByMood(mood)
 
 ## 10. 아직 안 정한 것
 
-1. 플레이리스트와 기분 태그의 중복 — 플레이리스트를 **기분별 자동 묶음**으로
-   정의하면 하나로 합쳐진다 (`08` §미해결 2)
-2. 기분 일기 히스토리의 최종 위치 (`08` §미해결 1)
-3. 번들 데모 음원을 누가 구하고 라이선스를 확인할지
-4. 앨범 아트 플레이스홀더의 시각적 형태 — 디자인 단계
+1. 번들 데모 음원(4~5곡)을 누가 구하고 라이선스를 확인할지. **CC0·CC BY만**
+2. 기분 플레이스홀더(`MoodArtwork`)의 시각적 형태 — 디자인 단계
 
 ## Related
 
