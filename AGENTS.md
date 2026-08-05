@@ -6,18 +6,26 @@ Overrides `~/.codex/AGENTS.md` for this repo.
 portfolio-vs-product framing for 냥BTI, the planning pipeline, and why each decision was made
 (`DECISIONS.md` too). Skip its Figma/MCP tooling sections; those tools are Claude's, not yours.
 
-## Do not write into `team-project/` before 2026-08-15
+## Writing into `team-project/` — allowed from 2026-08-05, under review
 
-It is the **graded deliverable**, presented 2026-08-14. Read it freely; do not edit, create, or
-delete anything under it. An autonomous edit there is not a risk worth taking for the sake of
-saving quota. `nyangbti/` is fine to work in.
+It is the **graded deliverable**, presented 2026-08-14. The earlier blanket freeze was lifted on
+2026-08-05 because the topic is now settled and the schedule needs the parallelism.
+
+**You may draft documents under `team-project/docs/`.** Two conditions, both absolute:
+
+1. **Nothing you write is final.** Claude reviews every file before it is committed, and Srit
+   approves. Write it, report it, stop — do not treat your own output as landed.
+2. **Do not touch `team-project/src/`.** Application code stays off the table until the design
+   is settled; the instructor requires a completed Figma design before coding.
+
+`nyangbti/` remains fine to work in.
 
 ## Two projects, one repo — never mix them
 
 | Folder | What it is |
 | --- | --- |
 | `nyangbti/` | 냥BTI, the instructor's worked example. A **portfolio piece, not a service to launch.** |
-| `team-project/` | The graded deliverable. Frozen until 08-15 (above). |
+| `team-project/` | The graded deliverable. `docs/` writable under review since 08-05; `src/` still off-limits (above). |
 
 Each has its own `docs/`, `src/`, `assets/`. Research, personas, and design for one never go in
 the other, even if the topics end up similar — they have different constraints.
