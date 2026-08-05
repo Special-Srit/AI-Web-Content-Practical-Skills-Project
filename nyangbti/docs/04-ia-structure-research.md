@@ -82,7 +82,7 @@
 | --- | --- | --- | --- |
 | **검사** | 1–16문항, 관찰형 질문, 모르겠음, 진행률, 이어하기/새로 시작 | top-level 확정 후보 [판단] | 서비스의 핵심 과업; 질문·진행률·뒤로·다음은 destination이 아니라 이 안의 flow step |
 | **내 기록** 또는 **내 고양이** | localStorage 결과 재열기, 검사일, 재검사, 공유 결과에서 내 검사 진입, 여러 마리 개별 저장 | top-level 후보 [판단] | 공통 니즈에 `결과를 남기고 다시 열어보기`, C의 개체별 저장 요구 존재 ([03 UX 연구 §7-1·§7-2](03-ux-research.md)); login/account와 혼동 금지 |
-| **비교** | 여러 마리 성향 나란히 비교, 유형 조합별 자원 분리 권고 | secondary top-level 후보, 첫 화면 기본 destination 아님 [판단] | feature 9가 **“secondary 전용 기능이므로 첫 화면 아님”**으로 명시됨 ([03 UX 연구 §7-2](03-ux-research.md)); §10은 결과 화면에서 비교 진입점을 요구 ([03 UX 연구 §10](03-ux-research.md)) |
+| **비교** | 여러 마리 성향 나란히 비교, 유형 조합별 자원 분리 권고 | secondary top-level 후보, 첫 화면 기본 destination 아님 [판단] | feature 9가 **secondary 전용 기능이므로 첫 화면 아님**으로 명시됨 ([03 UX 연구 §7-2](03-ux-research.md)); §10은 결과 화면에서 비교 진입점을 요구 ([03 UX 연구 §10](03-ux-research.md)) |
 | **알아보기** | Feline Five 참고·탐색적 연구 한계·4축 단순화 설명, 관찰 기준/행동 해석 guide | **추가 destination 권고, 미확정** [판단] | 03의 근거 표기는 결과 안의 in-flow block이며, persona가 독립 페이지를 요구하지 않음; 4번째 탭 확보를 위해 추가할 경우 비용 공개 필요 |
 
 - top-level로 승격하지 않을 항목 [판단] — `추천 놀이 / 추천 장난감 / 상호작용 방식 / 금지 목록 / 장난감 1순위 / 자원 분리 권고`는 결과를 행동으로 바꾸는 result content block

@@ -111,7 +111,7 @@ luna가 작성하고 sol이 검증했다. **§8만 그대로 써도 되고, 나�
 
 - `<nav>` 안에 5개 `<a>`를 두고 **아이콘+label을 모두 표시**한다. 목적지 이동이므로 shadcn
   `Tabs`가 아니라 직접 만든 navigation을 유지한다 ([09](09-implementation-spec.md) §0·§6).
-- 기본 phone width 360px에서 항목 폭은 약 **72px(360÷5)**로 둔다. 각 탭은 `min-height: 64px`에
+- 기본 phone width 360px에서 항목 폭은 약 **72px**(360÷5)로 둔다. 각 탭은 `min-height: 64px`에
   `padding-bottom: env(safe-area-inset-bottom)`을 더하고, 실제 hit area는 기존 결정대로 48×48px
   이상으로 유지한다. M3의 native 80px를 그대로 쓰면 콘텐츠를 과도하게 밀어 올리므로 64px은
   **웹 적응값**이다.
@@ -275,7 +275,7 @@ luna가 작성하고 sol이 검증했다. **§8만 그대로 써도 되고, 나�
   row 전체와 More가 같은 click handler를 공유하지 않게 한다.
 - title과 artist는 각각 한 줄 ellipsis. title에 파일명 전체를 여러 줄로 노출하지 않는다.
   접근성 이름에는 full title/artist를 유지하고 화면만 자른다.
-- 현재 playing row는 **배경 tint + 작은 equalizer/playing icon + `aria-current="true"`**를 함께
+- 현재 playing row는 **배경 tint + 작은 equalizer/playing icon**과 `aria-current="true"`를 함께
   사용한다. 색만으로 playing state를 전달하지 않는다. paused는 같은 row tint를 유지하되 icon은
   pause/play 상태로 구분한다.
 - artwork가 없는 picked track도 같은 48px box를 유지하고 MoodArtwork를 넣는다. row마다 artwork
