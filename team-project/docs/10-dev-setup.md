@@ -105,7 +105,7 @@ npx shadcn@latest add button input textarea card badge slider drawer dialog sonn
 | 컴포넌트 | 어디에 쓰나 |
 | --- | --- |
 | `button` | 전부 |
-| `input` | 보관함 검색 · 제목/아티스트 수정 |
+| `input` | 탐색 검색 · 제목/아티스트 수정 · 플레이리스트 이름 |
 | `textarea` | 일기 본문 |
 | `card` | 트랙 행 · 일기 카드 |
 | `badge` | 기분 태그 |
