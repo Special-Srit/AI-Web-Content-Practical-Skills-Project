@@ -16,6 +16,46 @@
   [Material Web 저장소](https://github.com/material-components/material-web),
   [NavigationBarView API](https://developer.android.com/reference/com/google/android/material/navigation/NavigationBarView))
 
+## 0. 검증 결과 (sol 검토, 2026-08-05) — 읽고 나서 §1~§8을 볼 것
+
+luna가 작성하고 sol이 검증했다. **§8만 그대로 써도 되고, 나머지는 아래 정정을 반영한
+뒤에 봐야 한다.** §1은 Claude가 먼저 검증해 이미 고쳤다(404 인용, labs 출처).
+
+### 규칙 충돌 2건 — 가장 중요
+
+| § | 문제 | 조치 |
+| --- | --- | --- |
+| §2 | **shadcn `Drawer`는 제스처 컴포넌트다.** `vaul` 의존이라 스와이프 닫기·드래그 핸들·스냅 포인트가 기본. 이 프로젝트는 **제스처 전면 금지** | **`Sheet`로 교체**(Radix Dialog 기반, 제스처 없음) + 보이는 44×44 닫기 버튼. `09`·`10` 반영 완료 |
+| §6 | **기분 칩 가로 스크롤도 스와이프를 요구한다.** 가려진 칩은 손가락으로 밀어야 닿는다 | **5개를 항상 전부 노출**하고 필요하면 **2줄로 줄바꿈**. 가로 스크롤·scroll-snap·페이드 단서 전부 삭제 |
+
+### 사실 오류
+
+- **§5 GitHub identicon은 이니셜이 아니다.** 해시 기반 5×5 기하 패턴이고 글자를 그리지 않는다.
+  `초기 문자` 항목의 근거로 쓸 수 없다
+- **§4 Material 1은 리스트 항목에 오버플로 메뉴를 두지 말라고 명시한다.** 우리 `TrackRow`의
+  `⋮`는 Material 근거가 아니라 **Spotify에서 가져온 선택**이다. 출처 표기를 고칠 것
+- **§2 Spotify는 바를 눌러 큐로 바로 가지 않는다.** 바 → Now Playing → 큐, 2단계다
+- **§6 Material 라벨 토큰은 절대값 14px이 아니라 `0.875rem`** — 루트가 16px일 때만 14px
+- **§6 Apple Music 인용 URL 오타** — 식별자 끝에 `6`이 빠졌다
+
+### 근거 강도 정정 — 사실이 아니라 "우리 선택"으로 표기할 것
+
+- **§5 MoodArtwork에는 선례가 없다.** YouTube Music·Bandcamp는 아트워크를 **받아서** 쓰고,
+  GitHub identicon은 아바타이며, MDN은 그라디언트가 렌더된다는 것만 증명한다.
+  **생성형 커버를 출시한 음악 제품 사례는 확인되지 않았다** → MoodArtwork는
+  **TuneBox의 독자 결정**이다. 발표에서 업계 관행처럼 말하지 말 것
+  - 기준선은 **단색 기분 색 + LP SVG 하나**. 해시 그라디언트·홈 패턴은 선택 실험
+- **§2 미니 플레이어 56px·아트워크 40×40·아티스트 줄은 Apple/Spotify가 정한 값이 아니다** —
+  우리 구현 선택
+- **§3 Apple HIG는 seek·queue를 규범 컨트롤로 열거하지 않는다** — Apple Music 관찰 사항으로 낮출 것
+- **§4 Material의 16dp·72dp는 아이콘/아바타 기준이지 앨범 아트 기준이 아니다**
+- **§6 "360px에 5개가 들어간다"는 검증되지 않았다.** 현재 한글 라벨 기준 약 378px가 필요해
+  **안 들어갈 가능성이 높다** → 2줄 줄바꿈을 기본으로 두고 실측할 것
+- **§7 일러스트가 선택이라는 근거가 약하다** — Polaris는 `image` prop을 요구한다.
+  일러스트 생략은 **우리 범위 결정**으로 적을 것
+- **§6 Material FilterChip 수치의 출처가 Chromium에 벤더링된 과거 스냅샷이다** — 값 자체는
+  맞지만 정본이 아니고, Material Web은 maintenance mode다
+
 ## 1. 하단 탭 바 — 5개 목적지
 
 ### 규범·공개 디자인 시스템

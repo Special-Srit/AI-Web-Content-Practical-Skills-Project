@@ -99,7 +99,7 @@ npx shadcn@latest init
 **한 번에 다 깔지 말 것.** 쓸 때 하나씩 추가한다. 안 쓰는 컴포넌트는 그냥 빚이다.
 
 ```bash
-npx shadcn@latest add button input textarea card badge slider drawer dialog sonner tabs toggle-group dropdown-menu switch avatar
+npx shadcn@latest add button input textarea card badge slider sheet dialog sonner tabs toggle-group dropdown-menu switch avatar
 ```
 
 | 컴포넌트 | 어디에 쓰나 |
@@ -110,7 +110,7 @@ npx shadcn@latest add button input textarea card badge slider drawer dialog sonn
 | `card` | 트랙 행 · 일기 카드 |
 | `badge` | 기분 태그 |
 | **`slider`** | **재생 위치 스크러버** |
-| **`drawer`** | **전역 플레이어 시트** (하단에서 올라옴) |
+| **`sheet`** | **전역 플레이어 시트** · 곡 추가 시트 |
 | `dialog` | 전체 삭제 확인 |
 | `sonner` | 오류 알림 (재생 실패 등) |
 | `tabs` | **일기 화면 안의** `날짜별 / 기분별` 전환 |
@@ -124,6 +124,8 @@ npx shadcn@latest add button input textarea card badge slider drawer dialog sonn
 - **하단 5탭에 `tabs`를 쓰지 않는다.** 목적지 이동이지 패널 전환이 아니므로
   `<nav>` + 버튼으로 직접 만든다 — `NavFooter.jsx` (`09` §6).
   단 **화면 안의 필터 전환(전체/노래/…)에는 `tabs`가 맞다**
+- **`drawer`** — `vaul` 의존이라 스와이프 닫기·드래그 핸들이 기본이다. 제스처 금지 규칙과
+  충돌하므로 **`sheet`를 쓴다** (sol 검토 08-05, `11` §2)
 - `sidebar` · `navigation-menu` — 데스크톱용
 - `table` · `chart` — 이 앱에 표도 차트도 없다
 

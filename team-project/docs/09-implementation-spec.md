@@ -70,7 +70,7 @@ team-project/src/
   components/
     NavFooter.jsx         5탭
     MiniPlayer.jsx        탭 바 위에 항상 붙어 있는 바
-    PlayerSheet.jsx       미니 바를 눌러 올라오는 전체 화면
+    PlayerSheet.jsx       미니 바를 눌러 올라오는 전체 화면 (shadcn Sheet 기반)
     TrackRow.jsx  PlaylistRow.jsx
     MoodPicker.jsx  DiaryCard.jsx  EmptyState.jsx
     MoodArtwork.jsx       기분 기반 커버 플레이스홀더
@@ -163,6 +163,11 @@ listEntries()            upsertEntry(entry)       entriesByMood(mood)
 | 마이 | 음악 취향 · 재생 설정 · 알림 · 테마 · 이용약관 | — |
 
 - **`MiniPlayer`와 `PlayerSheet`는 `App.jsx`에 마운트한다.** 특정 탭 소유가 아니다
+- **`PlayerSheet`·시트류는 shadcn `Sheet`를 쓴다. `Drawer`를 쓰지 않는다** (sol 검토, 08-05)
+  - `Drawer`는 `vaul` 의존이고 **스와이프로 닫기·드래그 핸들·스냅 포인트**가 기본이다.
+    이 프로젝트의 **제스처 전면 금지**와 정면으로 충돌한다
+  - `Sheet`는 Radix Dialog 기반이라 제스처가 없다
+  - 닫기는 **보이는 44×44 이상 버튼**으로만 제공한다
 - **화면 안의 필터 전환(전체/노래/앨범 같은 줄)에는 shadcn `tabs`가 맞다.**
   하단 5탭과는 다른 문제다
 - **뎁스 2를 넘기지 말 것** — 라이브러리에서 플레이리스트 상세로 **바로** 간다.
