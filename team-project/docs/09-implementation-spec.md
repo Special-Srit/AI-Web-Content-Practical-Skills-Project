@@ -86,12 +86,17 @@ load(track, srcUrl)      // 이전 objectURL을 먼저 revoke한다
 play()                   // Promise. 반드시 catch 한다 (§5)
 pause()
 seek(sec)
+next()  prev()           // queue 안에서 이동
+setQueue(trackIds, startIndex)
+toggleShuffle()          // queue 순서만 바꾼다
+setRepeat('off' | 'one' | 'all')
 subscribe(fn)  → unsubscribe
 getState()     → PlayerState
 
 // store/tracks.js
 listTracks()             addTracks(fileList)      removeTrack(id)
 setMoods(trackId, moods) updateMeta(id, {title, artist})
+toggleFavorite(id)
 resolveSrc(track)  → track.assetUrl (bundled) | objectURL (picked) | null
 
 // store/diary.js
@@ -141,10 +146,13 @@ listEntries()            upsertEntry(entry)       entriesByMood(mood)
 
 | 탭 | 화면 | 주요 컴포넌트 |
 | --- | --- | --- |
-| 홈 | 기분 선택 → 오늘의 추천 → 지금 재생 중 | `MoodPicker` `TrackRow` `MoodArtwork` |
+| 홈 | 기분 선택 → 오늘의 추천 → 지금 재생 중(플레이어 바) | `MoodPicker` `TrackRow` `MoodArtwork` |
 | 보관함 | 전체 트랙 · 검색 · 파일 추가 · 기분 태그·제목 수정 | `TrackRow` `MoodPicker` `EmptyState` |
-| 일기 | 오늘 쓰기 · 날짜별 히스토리 · 기분별 보기 | `DiaryCard` `MoodPicker` `EmptyState` |
-| 설정 | 음원 크레딧 · 전체 삭제 · 앱 정보 | — |
+| 일기 | 오늘 쓰기 · **날짜별 히스토리 / 기분별 모아보기** | `DiaryCard` `MoodPicker` `EmptyState` |
+| 설정 | 음원 크레딧 · 데이터 관리 · 앱 정보 | — |
+
+- **일기의 `날짜별 / 기분별` 전환은 shadcn `tabs`를 써도 된다.** 이것은 한 화면
+  안의 패널 전환이라 Tabs의 원래 용도에 맞는다. 하단 4탭과는 다른 문제다
 
 - **`PlayerSheet`는 `App.jsx`에 마운트한다.** 특정 탭 소유가 아니다. 어느 탭에서
   재생을 시작해도 같은 시트가 뜬다
@@ -168,12 +176,16 @@ listEntries()            upsertEntry(entry)       entriesByMood(mood)
 
 ## 8. 하지 말 것 — 이미 결정된 사항
 
-- **수동 플레이리스트 · 재생목록(queue) · 셔플 · 반복 · 저장 용량 미터** —
-  2026-08-05에 일정상 잘라냈다 (`08` §잘라낸 것). 만들지 말 것
+- **수동 플레이리스트 CRUD** — 기분 태그가 그 역할을 한다. 레이아웃에도 없다
+- **푸시 알림** — 백엔드가 없어 불가능하다. 설정의 `알림`은 **인앱·로컬 알림까지만**
+- **계정 아이콘을 계정 기능으로 만드는 것** — 아이콘은 레이아웃대로 두되
+  로그인·회원가입·프로필로 이어지지 않는다 (`08` §구현상 주의)
 - 제스처 전부 (스와이프·롱프레스·드래그 정렬) — 보이는 버튼만
 - ID3 / MP4 태그 파싱 — 제목은 파일명에서, 아티스트는 선택 입력
-- 앨범 아트 추출 — File API로 안 나온다. 기분 기반 플레이스홀더가 기본값이며,
-  **깨진 이미지가 아니라 정식 상태로 디자인**한다
+- 앨범 아트 **추출** — File API로 안 나오고 태그 파싱은 범위 밖이다
+  - 번들 곡은 `artworkUrl`로 아트를 함께 넣는다
+  - picked 곡은 `MoodArtwork` — 레이아웃의 **LP판 그래픽에 기분 색만 입히면 된다.**
+    깨진 이미지가 아니라 정식 상태로 디자인한다
 - 로그인·계정·동기화·실시간 기능
 - 저작권 있는 음원을 저장소에 넣는 것. `public/audio/`는 **검증된 CC0·CC BY만**
   (`08` §The content problem). `CREDITS.md`를 **커밋 전에** 채우고, **크레딧을
