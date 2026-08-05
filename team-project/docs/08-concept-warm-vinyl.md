@@ -70,12 +70,38 @@ should be designed as a real state, not treated as a missing image.
 The concept design's bottom nav is kept. It satisfies 3-2's 모바일 앱 하단 4~5,
 which `07`'s two-destination structure did not.
 
+**탭 4개 확정 (Srit, 2026-08-05)** — `home` · `library` · `explore` · `myPage`.
+아래 배치는 그 4개에 모든 내용을 빠짐없이 넣은 것이며, 표시 아래 두 항목은
+**되돌릴 수 있는 배치 판단**이다.
+
 | Tab | Contents | Notes |
 | --- | --- | --- |
-| **홈** | 기분 선택 → 지금 재생 중 → 오늘의 추천 → 오늘의 기분 일기 | The concept design's screen |
-| **내 마음** | 기분 일기 히스토리 · 기분별 통계 | Where the saved reflection accumulates |
-| **탐색** | 내 라이브러리 · 파일 추가 · 검색 · 기분 태그 편집 | This is the file library, renamed |
-| **마이** | 저장 용량 · 전체 삭제 · 앱 정보 | **계정·로그인 없음** |
+| **홈** | 기분 선택 → 오늘의 추천 → 지금 재생 중 → 오늘의 기분 일기(쓰기) | The concept design's screen |
+| **라이브러리** | 사용자가 만들고 저장한 플레이리스트 · **기분 일기 히스토리** [배치 판단] | "내가 쌓은 것"이 모이는 곳 |
+| **탐색** | 곡 검색 (제목·아티스트·파일명) · **파일 추가** [배치 판단] | 곡을 찾고 들여오는 곳 |
+| **마이페이지** | 저장 용량 · 전체 삭제 · 앱 정보 | **계정·로그인 없음** |
+
+- **`마이페이지` must not look like an account.** `03` flags fake multi-user
+  state as a dead end, and 냥BTI hit the identical trap (04-ia §4-1). No profile
+  photo, no 로그인, no 회원 정보 — settings and data controls only. The concept
+  design's header avatar should become a settings entry or be removed.
+- **오늘의 추천 is a filter over the user's own library**, not a catalogue.
+  `JAZZ 24곡` style counts only ever reflect what the user actually has.
+- **탐색 searches the user's own tracks only.** There is no catalogue to
+  discover from. Search covers title / artist / fileName per `07`'s Korean
+  search rules (NFC normalise, token AND-match).
+- Player is a sheet over 홈, not a fifth tab (kept from `07`).
+
+### 두 가지 미해결 — 팀에서 확정할 것
+
+1. **기분 일기 히스토리의 위치.** 원래 `내 마음` 탭에 있었으나 탭 구성이 바뀌며
+   갈 곳이 없어졌다. 여기서는 라이브러리에 두었지만, **이 앱이 플레이어가 아닌
+   근거가 바로 이 일기**(`03`의 saved reflection)이므로 묻히면 차별점이 사라진다.
+   대안 — 라이브러리 안에 탭으로 분리 / 홈에서 1뎁스 아래 / 탭 이름을 바꿔 되살리기
+2. **플레이리스트와 기분 태그가 조직화 수단으로 중복된다.** `06`은 playlists
+   CRUD를 트랩으로 분류했다. 기분 태그가 이미 곡을 묶는 축이라면, 수동
+   플레이리스트까지 만들 필요가 있는지 4일 일정 안에서 재검토할 것.
+   대안 — 플레이리스트를 **기분별 자동 묶음**으로 정의하면 둘이 하나가 된다
 
 - **`마이` must not look like an account.** `03` flags fake multi-user state as
   a dead end, and 냥BTI hit the identical trap (04-ia §4-1). No profile photo,
