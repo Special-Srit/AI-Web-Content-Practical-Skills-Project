@@ -21,7 +21,8 @@ loops and practice logs. All of that is superseded.
 
 ## 이름 — Music Diary (2026-08-05 저녁 확정, 3차 변경)
 
-- 앱 이름 **Music Diary**. 화면 표기는 **음악 일기**
+- 팀 이름 **Clova (클로바)** · 앱 이름 **Music Diary**, 화면 표기는 **음악 일기**
+  - 팀과 앱은 **다른 이름**이다. 발표에서 팀이 발표하고, 만든 것이 앱이다
 - 이름 변천 — `Warm Vinyl` → `Vibe Vinyl` → `TuneBox` → **`Music Diary`**.
   `Warm Vinyl`은 설정의 **테마 이름**으로 남긴다 (테마는 하나뿐, 전환 기능 없음)
 - `localStorage` 키 접두사도 `musicdiary:`로 맞췄다. **코드가 아직 없어 비용이 0이다**

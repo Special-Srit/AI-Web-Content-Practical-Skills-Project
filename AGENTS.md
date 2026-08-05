@@ -40,7 +40,7 @@ scope rather than preference. A framework answer is no longer wrong here.
 - `team-project/docs/` is split into `Eng/` and `KR/` (2026-08-05). Only 03, 07 and 08
   exist in both; everything else is single-language. `docs/README.md` is the index —
   read it before assuming a document is missing. `docs/prompts/` is **not** split.
-- `team-project/` is **Music Diary** (음악 일기), React + Vite + shadcn. The name is
+- `team-project/` is **Music Diary** (음악 일기) by team **Clova (클로바)**, React + Vite + shadcn. The name is
   **frozen** — see `DECISIONS.md`. Do not propose renaming it, and do not "correct"
   the older names left in `team-project/docs/prompts/`; those are a verbatim record.
 - `team-project/` is **not** covered by this — the approval was asked and granted for 냥BTI.

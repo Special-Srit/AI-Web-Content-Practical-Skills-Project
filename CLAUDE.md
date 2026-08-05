@@ -46,6 +46,7 @@ different constraints and the 냥BTI work is bounded by the instructor's example
 | Usable build days | ~7.5 (presentation day, field trip, diagnostic eat the rest) |
 | Stack | **React, Vue, Svelte all approved 2026-08-05** by the instructor, superseding the earlier plain-HTML-only scope rule. 냥BTI goes React + shadcn/ui (`nyangbti/docs/06-design-system.md`). The approval was granted for 냥BTI — confirm before assuming it covers `team-project/` |
 | Form factor | web app: runs in a browser without install. **Mobile-first — the phone layout is the primary target, desktop is the adaptation.** Not "responsive if time allows" |
+| Team name | **Clova (클로바)** — the team. The app is **Music Diary** (음악 일기); the two are different names and both go on the deck |
 | Instructor | 이수경 선생님 |
 
 **Settled 08-03 (1-4):** **2인 1조 teams** — confirmed, not solo. The instructor

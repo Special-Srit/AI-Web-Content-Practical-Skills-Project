@@ -2,6 +2,18 @@
 
 Newest first. Records *why*, so choices aren't re-litigated later.
 
+## 2026-08-05 — team name is **Clova (클로바)**
+
+Team name for the graded project, distinct from the app name (**Music Diary** /
+음악 일기). Both appear on the deck: the team presents, the app is what was built.
+
+**Worth knowing before it goes on a slide:** `CLOVA` is NAVER's AI platform brand
+(CLOVA X, CLOVA Note). A team name is not a product and this is a course project,
+so the collision is low-risk — but in a Korean AI-themed course the audience will
+recognise it, and it may read as a reference rather than an original name. Kept
+because Srit chose it knowingly; noted here so nobody is surprised by the
+association on 08-14.
+
 ## 2026-08-05 — team project app name is **Music Diary**. Frozen.
 
 Korean display name **음악 일기**. `localStorage` prefix `musicdiary:`.
