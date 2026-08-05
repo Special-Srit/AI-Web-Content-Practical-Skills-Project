@@ -181,4 +181,4 @@ npm run dev -- --host
 ## Related
 
 - `09-implementation-spec.md` — 구조 · 인터페이스 · 규칙
-- `08-concept-music-diary.md` — 제품 결정 · 자료 구조
+- `../Eng/08-concept-music-diary.md` — 제품 결정 · 자료 구조

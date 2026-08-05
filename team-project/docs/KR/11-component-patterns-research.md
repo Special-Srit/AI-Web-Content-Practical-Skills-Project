@@ -5,9 +5,9 @@
 - 범위 — shadcn/ui가 이미 정한 버튼·다이얼로그·드로어·폼 컨트롤은 재조사하지 않음
 - 제품 제약 — 5개 탭 `홈 · 라이브러리 · 탐색 · 일기 · 마이`, 전역 오디오 1개,
   미니 플레이어와 전체 화면 플레이어는 `App.jsx`에 마운트
-  ([08](08-concept-music-diary.md), [09](09-implementation-spec.md) §1·§6)
+  ([08](../Eng/08-concept-music-diary.md), [09](09-implementation-spec.md) §1·§6)
 - 이미 결정된 치수 — 본문 16px 이상, 일반 터치 타깃 44×44 이상, 하단 탭 48×48 이상,
-  하단 safe-area 여백 ([09](09-implementation-spec.md) §7, [냥BTI 디자인 시스템](../../nyangbti/docs/06-design-system.md) §3)
+  하단 safe-area 여백 ([09](09-implementation-spec.md) §7, [냥BTI 디자인 시스템](../../../nyangbti/docs/06-design-system.md) §3)
 - 용어 — `명세`는 문서에 수치·규칙이 있는 경우, `관찰`은 출시 제품의 공개 화면·사용 설명서에서
   확인한 경우, `권고`는 Music Diary에 적용하는 판단
 - 현재 Material 3 문서는 JavaScript로 렌더링되며 정적 본문에서 수치가 모두 노출되지 않는다.
@@ -73,7 +73,7 @@ luna가 작성하고 sol이 검증했다. **§8만 그대로 써도 되고, 나�
   - **이 컴포넌트는 `labs/`에 있다.** 저장소가 명시적으로 *"experimental features that are not
     recommended for production. Breaking changes may occur"* 라고 경고한다. Apple HIG와 나란히
     둘 규범 문서가 아니라 **참고 구현**으로 읽을 것. Material Web 자체도 maintenance mode다
-    ([07 조사](07-mobile-ui-libraries-research.md))
+    ([07 조사](../../../nyangbti/docs/07-mobile-ui-libraries-research.md))
     ([labs 경고문](https://github.com/material-components/material-web/blob/main/labs/README.md))
   - Android 공식 API의 `LABEL_VISIBILITY_AUTO`는 목적지 **3개 이하면 전체 label**, **4개 이상이면
     선택된 항목만 label**을 보이는 규칙이다. `LABELED`로 전체 label을 강제할 수도 있다.
@@ -159,7 +159,7 @@ luna가 작성하고 sol이 검증했다. **§8만 그대로 써도 되고, 나�
 ### Music Diary 권고
 
 - 구조는 `본문 → MiniPlayer → NavFooter`의 세로 stack으로 고정한다. MiniPlayer는 `App.jsx`에
-  전역 mount하고, 어느 탭에서 재생해도 같은 높이와 같은 상태를 유지한다 ([08](08-concept-music-diary.md),
+  전역 mount하고, 어느 탭에서 재생해도 같은 높이와 같은 상태를 유지한다 ([08](../Eng/08-concept-music-diary.md),
   [09](09-implementation-spec.md) §6).
 - 기본 시각 높이는 **56px**, safe-area는 NavFooter에만 더한다. MiniPlayer 안에는 최소한 다음을 둔다.
   - 40×40 artwork 또는 MoodArtwork
@@ -279,7 +279,7 @@ luna가 작성하고 sol이 검증했다. **§8만 그대로 써도 되고, 나�
   사용한다. 색만으로 playing state를 전달하지 않는다. paused는 같은 row tint를 유지하되 icon은
   pause/play 상태로 구분한다.
 - artwork가 없는 picked track도 같은 48px box를 유지하고 MoodArtwork를 넣는다. row마다 artwork
-  유무로 높이를 바꾸면 목록 scan이 깨진다 ([08](08-concept-music-diary.md) §The content problem,
+  유무로 높이를 바꾸면 목록 scan이 깨진다 ([08](../Eng/08-concept-music-diary.md) §The content problem,
   [09](09-implementation-spec.md) §8).
 
 ### 저비용 vs 고비용
@@ -351,7 +351,7 @@ luna가 작성하고 sol이 검증했다. **§8만 그대로 써도 되고, 나�
   chip의 visual height나 selected treatment를 제시하지 않는다. **Apple chip 수치는 확인 못 함**.
 - 이미 정한 일반 touch target 44×44 이상을 chip의 바깥 button hit area에 적용한다.
   32px visual chip을 그대로 32px button으로 만들면 이 프로젝트 규칙을 위반한다
-  ([09](09-implementation-spec.md) §7, [냥BTI 디자인 시스템](../../nyangbti/docs/06-design-system.md) §3).
+  ([09](09-implementation-spec.md) §7, [냥BTI 디자인 시스템](../../../nyangbti/docs/06-design-system.md) §3).
 
 ### 출시 제품 관찰
 
@@ -462,7 +462,7 @@ luna가 작성하고 sol이 검증했다. **§8만 그대로 써도 되고, 나�
 - media reference는 full player의 복제물이 아니다. 재생 버튼을 누르면 global player state만 바뀌고,
   DiaryCard의 row는 현재 곡 title·playing state만 갱신한다.
 - 삭제된 track은 entry에서 제거하지 않고 `삭제된 곡` label과 neutral artwork를 보여 준다. 이것은
-  diary의 기록을 조용히 바꾸지 않기 위한 data contract 결정이다 ([08](08-concept-music-diary.md) §Data contract).
+  diary의 기록을 조용히 바꾸지 않기 위한 data contract 결정이다 ([08](../Eng/08-concept-music-diary.md) §Data contract).
 - card 안에 또 하나의 큰 Card를 넣지 않고 divider·surface tint로 attached media가 연결된 block임을
   보인다. text와 media를 모두 primary click target으로 만들지 말고, More와 play는 별도 button으로 둔다.
 
@@ -495,7 +495,7 @@ luna가 작성하고 sol이 검증했다. **§8만 그대로 써도 되고, 나�
 | MiniPlayer | 56px, 40px artwork, title/artist, pause·next 44px, bar 위에 stack, `idle`이면 숨김, tap → full player | [Apple Music controls](https://support.apple.com/en-ng/guide/iphone/iph676daac9b/26/ios/26) · [Spotify queue](https://support.spotify.com/gm/article/play-queue/) |
 | Full-screen player | safe-area close → square art 280–320px 권고 → title/artist → 44px touch scrubber → previous/play/next → secondary actions | [Apple Playing audio](https://developer.apple.com/design/human-interface-guidelines/playing-audio) · [Media3 PlayerView](https://developer.android.com/reference/kotlin/androidx/media3/ui/PlayerView) |
 | TrackRow | 72px two-line row, 48px artwork, title/artist 각 1줄 ellipsis, row primary play, trailing More 44px, playing tint+icon+`aria-current` | [Material lists](https://m1.material.io/components/lists.html) · [Spotify queue](https://support.spotify.com/gm/article/play-queue/) |
-| MoodArtwork | stable `MoodId + track.id`, 5 mood palette, deterministic gradient/LP pattern, 같은 track은 모든 화면에서 동일, broken-image 금지 | [GitHub Identicons](https://github.blog/news-insights/company-news/identicons/) · [MDN gradients](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Images/Using_gradients) · [08](08-concept-music-diary.md) |
+| MoodArtwork | stable `MoodId + track.id`, 5 mood palette, deterministic gradient/LP pattern, 같은 track은 모든 화면에서 동일, broken-image 금지 | [GitHub Identicons](https://github.blog/news-insights/company-news/identicons/) · [MDN gradients](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Images/Using_gradients) · [08](../Eng/08-concept-music-diary.md) |
 | Mood chip group | single-select radiogroup, 32–36px visual chip, 44px+ hit area, 8px gap, one-row horizontal scroll, selected fill+check/border | [Material FilterChip](https://developer.android.com/develop/ui/compose/quick-guides/content/create-chip) · [Material chips](https://m1.material.io/components/chips.html) |
 | EmptyState | optional decorative icon → heading → one sentence → one primary action; filtered-empty는 action 선택, error와 분리 | [Material empty states](https://m1.material.io/patterns/empty-states.html) · [Polaris Empty state](https://polaris-react.shopify.com/components/layout-and-structure/empty-state) |
 | DiaryCard + media | date/mood → text → 48px artwork media row → play 44px → More; 삭제된 곡 label 유지; nested card·drag 제외 | [Material cards](https://m1.material.io/components/cards.html) · [Apple Journal](https://support.apple.com/guide/iphone/write-in-your-journal-iph9824e83ce/26/ios/26) |

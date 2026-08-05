@@ -14,7 +14,7 @@
 | 파일 | 무엇을 만든 프롬프트인가 | 실행 |
 | --- | --- | --- |
 | `01-plan-review-prompt.md` | `08`·`07` 계획의 타당성·사실 검증 (BLOCKER 4건 포함 18건 발견) | Codex gpt-5.6-sol, effort high |
-| `02-component-patterns-research-prompt.md` | `11-component-patterns-research.md` — shadcn에 없는 컴포넌트의 업계 패턴 조사 | Codex gpt-5.6-luna, effort high |
+| `02-component-patterns-research-prompt.md` | `../KR/11-component-patterns-research.md` — shadcn에 없는 컴포넌트의 업계 패턴 조사 | Codex gpt-5.6-luna, effort high |
 | `03-pattern-research-review-prompt.md` | 위 조사의 검증 (§1은 Claude가 먼저 검증해 404·labs 문제 발견) | Codex gpt-5.6-sol, effort high |
 
 ## 언어 — 영어로 쓴 이유
@@ -43,6 +43,6 @@ GPT 계열도 LLM이고 영어 지시를 더 정확히 따르기 때문이다.
 
 ## Related
 
-- `../08-concept-music-diary.md` — 제품 결정
-- `../09-implementation-spec.md` — 구현 명세
+- `../Eng/08-concept-music-diary.md` — 제품 결정
+- `../KR/09-implementation-spec.md` — 구현 명세
 - `../../nyangbti/docs/prompts/README.md` — 같은 규칙의 냥BTI 쪽 기록

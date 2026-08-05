@@ -1,12 +1,12 @@
 > **이 파일은 영어 원본의 한국어판이다.**
-> 원본: `07-music-player-plan.md` — **원본이 정본이고 이 파일은 사본이다.**
+> 원본: `../Eng/07-music-player-plan.md` — **원본이 정본이고 이 파일은 사본이다.**
 > 동기화 시점: 2026-08-05. 원본이 바뀌면 이 파일도 따라 고쳐야 한다.
 
 # 07 · 주제 확정 — A–B 루프 연습 플레이어
 
 팀이 2026-08-05에 확정. 참고용으로 남겨 두는 후보 순위
 `00-topic-selection.md`를 대체한다. 이 문서는 구현 계획이며, 여기 제약 대부분의
-근거는 먼저 `06-streaming-review-sol.md`를 읽는다.
+근거는 먼저 `../Eng/06-streaming-review-sol.md`를 읽는다.
 
 ## 제품 프레이밍
 
@@ -18,7 +18,7 @@
 섀도잉 클립, 또는 자신의 발표 리허설 녹음. 상황은 “계속 틀리는 부분이 바로 이
 12초다”임.
 
-**일반 음악 플레이어가 아닌 이유.** `03-idea-scan-positioning.md`는 “제목을
+**일반 음악 플레이어가 아닌 이유.** `../Eng/03-idea-scan-positioning.md`는 “제목을
 *My Todo*, *Weather App*, *Movie Search*라고 해도 되는가”를 레드 플래그로 든다.
 “Music Player”도 같은 종류의 제목이다. 또한 가장 강한 그린 플래그인
 *“완성된 루프: 입력 → 결정 → 결과 → 저장된 성찰”*도 놓친다. 플레이어에는 결정이
@@ -48,7 +48,7 @@
 
 ## 플랫폼 현실 — 팀에 iPhone 없음
 
-`06-streaming-review-sol.md`의 4번 항목은 “실제 iPhone에서 매일 통합”을 지시한다.
+`../Eng/06-streaming-review-sol.md`의 4번 항목은 “실제 iPhone에서 매일 통합”을 지시한다.
 **실행 불가 — 팀에 iPhone을 가진 사람이 없다.** 이 문서에서 가장 중요한 계획
 사실이므로 조용히 건너뛰지 말고 명시적으로 처리한다.
 
@@ -276,8 +276,8 @@ GitHub Pages의 HTTPS에서 실행될 때만 가능).
 
 ## 관련 문서
 
-- `06-streaming-review-sol.md` — 위 제약 대부분의 근거
-- `04-streaming-ui-models.md` — 차용/함정 표. 수치는 2025년 8월의 특정 시점 스냅샷으로 보고, 가격 섹션은 확인 날짜가 필요함
-- `03-idea-scan-positioning.md` — 이 계획을 평가하는 그린/레드 플래그
+- `../Eng/06-streaming-review-sol.md` — 위 제약 대부분의 근거
+- `../Eng/04-streaming-ui-models.md` — 차용/함정 표. 수치는 2025년 8월의 특정 시점 스냅샷으로 보고, 가격 섹션은 확인 날짜가 필요함
+- `../Eng/03-idea-scan-positioning.md` — 이 계획을 평가하는 그린/레드 플래그
 - `00-topic-selection.md` — 대체된 후보 순위
 - 수업 노트: 비공개 vault의 `Study/AI-Web-Content-Practical-Skills/`

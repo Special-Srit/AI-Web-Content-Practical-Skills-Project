@@ -1,7 +1,7 @@
 # 07 · Topic decided — A–B loop practice player
 
 Decided 2026-08-05 by the team. Supersedes the candidate ranking in
-`00-topic-selection.md`, which stays as reference only. This document is the
+`../KR/00-topic-selection.md`, which stays as reference only. This document is the
 implementation plan; read `06-streaming-review-sol.md` first for the evidence
 behind most constraints here.
 
@@ -286,5 +286,5 @@ secure context, so it only runs once the app is on GitHub Pages over HTTPS).
 - `04-streaming-ui-models.md` — borrow/trap table; treat its figures as a dated
   Aug-2025 snapshot and its price sections as needing a checked date
 - `03-idea-scan-positioning.md` — green/red flags this plan is measured against
-- `00-topic-selection.md` — the superseded candidate ranking
+- `../KR/00-topic-selection.md` — the superseded candidate ranking
 - Class notes: `Study/AI-Web-Content-Practical-Skills/` in the private vault

@@ -1,7 +1,7 @@
 # 09 · 구현 명세 — 팀원이 이 문서를 보고 코딩한다
 
 작성 2026-08-05. 대상 독자는 **코드를 작성하는 팀원**이다.
-`08-concept-music-diary.md`(제품 결정)와 `07-music-player-plan.md`(오디오 규칙·
+`../Eng/08-concept-music-diary.md`(제품 결정)와 `../Eng/07-music-player-plan.md`(오디오 규칙·
 접근성·플랫폼 제약)를 이미 읽었다고 가정한다.
 
 ## 0. 역할과 스택
@@ -238,5 +238,5 @@ listEntries()            upsertEntry(entry)       entriesByMood(mood)
 
 ## Related
 
-- `08-concept-music-diary.md` — 제품 결정 · 자료 구조 원본
-- `07-music-player-plan.md` — 오디오 포맷 규칙 · 접근성 · 플랫폼 제약
+- `../Eng/08-concept-music-diary.md` — 제품 결정 · 자료 구조 원본
+- `../Eng/07-music-player-plan.md` — 오디오 포맷 규칙 · 접근성 · 플랫폼 제약

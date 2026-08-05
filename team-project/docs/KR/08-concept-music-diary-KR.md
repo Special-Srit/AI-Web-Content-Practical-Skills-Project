@@ -1,11 +1,11 @@
 > **이 파일은 영어 원본의 한국어판이다.**
-> 원본: `08-concept-music-diary.md` — **원본이 정본이고 이 파일은 사본이다.**
+> 원본: `../Eng/08-concept-music-diary.md` — **원본이 정본이고 이 파일은 사본이다.**
 > 동기화 시점: 2026-08-05. 원본이 바뀌면 이 파일도 따라 고쳐야 한다.
 
 # 08 · 콘셉트 확정 — Music Diary (기분 우선 local player)
 
 팀원이 콘셉트를 디자인한 뒤 2026-08-05에 확정.
-`07-music-player-plan.md`의 제품 프레이밍을 **대체한다.** A–B 루프 연습 도구는
+`../Eng/07-music-player-plan.md`의 제품 프레이밍을 **대체한다.** A–B 루프 연습 도구는
 폐기한다.
 
 `07`은 **전체가 구속력을 갖는 문서가 아님** — 그 포괄적 주장은 잘못되었음
@@ -47,7 +47,7 @@
 > 오늘의 기분을 고르면 내 음악 중에서 어울리는 곡을 꺼내 주고, 다 듣고 나서
 > 그날의 기분을 한 줄로 남겨 두는 플레이어.
 
-`03-idea-scan-positioning.md`가 요구한 완성된 루프를 그대로 유지:
+`../Eng/03-idea-scan-positioning.md`가 요구한 완성된 루프를 그대로 유지:
 
 | 단계 | 이 앱에서의 구현 |
 | --- | --- |
@@ -291,7 +291,7 @@ IA에는 서로 겹치는 분류가 **세 개** 있다. 전부 같은 질문에 
 
 ## 관련 문서
 
-- `07-music-player-plan.md` — 오디오 규칙, 플랫폼 현실, 접근성 (계속 적용)
-- `03-idea-scan-positioning.md` — 이 콘셉트를 평가하는 레드/그린 플래그 테스트
-- `06-streaming-review-sol.md` — 제약의 근거
-- `04-streaming-ui-models.md` · `05-streaming-facts-verified.md` — Spotify/YT Music/Melon 연구, 이제 직접 관련됨
+- `../Eng/07-music-player-plan.md` — 오디오 규칙, 플랫폼 현실, 접근성 (계속 적용)
+- `../Eng/03-idea-scan-positioning.md` — 이 콘셉트를 평가하는 레드/그린 플래그 테스트
+- `../Eng/06-streaming-review-sol.md` — 제약의 근거
+- `../Eng/04-streaming-ui-models.md` · `../Eng/05-streaming-facts-verified.md` — Spotify/YT Music/Melon 연구, 이제 직접 관련됨

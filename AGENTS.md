@@ -37,6 +37,9 @@ This supersedes the earlier "plain HTML/CSS/JS, no framework" rule, which came f
 scope rather than preference. A framework answer is no longer wrong here.
 
 - `nyangbti/` is going to **React + shadcn/ui**. See `nyangbti/docs/06-design-system.md`.
+- `team-project/docs/` is split into `Eng/` and `KR/` (2026-08-05). Only 03, 07 and 08
+  exist in both; everything else is single-language. `docs/README.md` is the index —
+  read it before assuming a document is missing. `docs/prompts/` is **not** split.
 - `team-project/` is **Music Diary** (음악 일기), React + Vite + shadcn. The name is
   **frozen** — see `DECISIONS.md`. Do not propose renaming it, and do not "correct"
   the older names left in `team-project/docs/prompts/`; those are a verbatim record.
@@ -64,7 +67,7 @@ documentation*, not *run it*. Two consequences, both mandatory:
   tested platform; iOS is designed-for and **unverified**. Say so in the
   presentation rather than implying coverage that doesn't exist.
 
-See `team-project/docs/07-music-player-plan.md` for the resulting platform table.
+See `team-project/docs/Eng/07-music-player-plan.md` for the resulting platform table.
 
 ## The deck is generated, not hand-edited
 
