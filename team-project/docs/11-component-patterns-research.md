@@ -1,15 +1,15 @@
-# 11 · TuneBox 컴포넌트 패턴 조사
+# 11 · Music Diary 컴포넌트 패턴 조사
 
 작성 2026-08-05. 대상은 **모바일 우선 웹 앱**이다.
 
 - 범위 — shadcn/ui가 이미 정한 버튼·다이얼로그·드로어·폼 컨트롤은 재조사하지 않음
 - 제품 제약 — 5개 탭 `홈 · 라이브러리 · 탐색 · 일기 · 마이`, 전역 오디오 1개,
   미니 플레이어와 전체 화면 플레이어는 `App.jsx`에 마운트
-  ([08](08-concept-tunebox.md), [09](09-implementation-spec.md) §1·§6)
+  ([08](08-concept-music-diary.md), [09](09-implementation-spec.md) §1·§6)
 - 이미 결정된 치수 — 본문 16px 이상, 일반 터치 타깃 44×44 이상, 하단 탭 48×48 이상,
   하단 safe-area 여백 ([09](09-implementation-spec.md) §7, [냥BTI 디자인 시스템](../../nyangbti/docs/06-design-system.md) §3)
 - 용어 — `명세`는 문서에 수치·규칙이 있는 경우, `관찰`은 출시 제품의 공개 화면·사용 설명서에서
-  확인한 경우, `권고`는 TuneBox에 적용하는 판단
+  확인한 경우, `권고`는 Music Diary에 적용하는 판단
 - 현재 Material 3 문서는 JavaScript로 렌더링되며 정적 본문에서 수치가 모두 노출되지 않는다.
   따라서 M3 구현 소스와 Android 공식 API를 함께 확인했고, 오래된 Material 1 수치는
   `구버전 참고`로 구분했다. ([Material 3 navigation bar](https://m3.material.io/components/navigation-bar/overview),
@@ -43,7 +43,7 @@ luna가 작성하고 sol이 검증했다. **§8만 그대로 써도 되고, 나�
 - **§5 MoodArtwork에는 선례가 없다.** YouTube Music·Bandcamp는 아트워크를 **받아서** 쓰고,
   GitHub identicon은 아바타이며, MDN은 그라디언트가 렌더된다는 것만 증명한다.
   **생성형 커버를 출시한 음악 제품 사례는 확인되지 않았다** → MoodArtwork는
-  **TuneBox의 독자 결정**이다. 발표에서 업계 관행처럼 말하지 말 것
+  **Music Diary의 독자 결정**이다. 발표에서 업계 관행처럼 말하지 말 것
   - 기준선은 **단색 기분 색 + LP SVG 하나**. 해시 그라디언트·홈 패턴은 선택 실험
 - **§2 미니 플레이어 56px·아트워크 40×40·아티스트 줄은 Apple/Spotify가 정한 값이 아니다** —
   우리 구현 선택
@@ -93,7 +93,7 @@ luna가 작성하고 sol이 검증했다. **§8만 그대로 써도 되고, 나�
 - **Material과 Apple의 차이**
   - Material 3 구현은 80px·indicator 수치를 제공하지만, Apple HIG는 현재 tab bar 높이 수치를
     제공하지 않는다. Apple은 “5개 이하·label·overflow 회피”를 강조하고, Material은 4개 이상에서
-    label을 선택 항목만 보이는 구현도 제공한다. **5개 전체 label을 유지할지는 TuneBox의 웹 선택**이다.
+    label을 선택 항목만 보이는 구현도 제공한다. **5개 전체 label을 유지할지는 Music Diary의 웹 선택**이다.
 
 ### 출시 제품 관찰
 
@@ -107,7 +107,7 @@ luna가 작성하고 sol이 검증했다. **§8만 그대로 써도 되고, 나�
   들어가게 한다. 다만 Spotify의 **내부 높이·indicator·label truncation 수치는 공개 문서에서
   확인 못 함**. ([Spotify Play Queue](https://support.spotify.com/gm/article/play-queue/))
 
-### TuneBox 권고
+### Music Diary 권고
 
 - `<nav>` 안에 5개 `<a>`를 두고 **아이콘+label을 모두 표시**한다. 목적지 이동이므로 shadcn
   `Tabs`가 아니라 직접 만든 navigation을 유지한다 ([09](09-implementation-spec.md) §0·§6).
@@ -131,7 +131,7 @@ luna가 작성하고 sol이 검증했다. **§8만 그대로 써도 되고, 나�
 - **저비용** — 64px 고정 bar, 5개 icon+label, active color·weight·pill, 1px divider.
   구현·검수 범위가 작고 한국어 label이 안정적이다.
 - **고비용** — viewport 폭별 항목 폭 보정, M3식 pill motion, 스크롤 중 bar 최소화,
-  desktop에서 sidebar로 변환. Apple HIG가 iPad의 adaptable sidebar를 설명하지만 TuneBox의
+  desktop에서 sidebar로 변환. Apple HIG가 iPad의 adaptable sidebar를 설명하지만 Music Diary의
   MVP는 mobile-first 정적 사이트이므로, 이 비용을 들여도 Android/iOS 웹에서 얻는 이득이 작다.
   ([Apple HIG — Tab bars](https://developer.apple.com/design/human-interface-guidelines/tab-bars))
 
@@ -154,12 +154,12 @@ luna가 작성하고 sol이 검증했다. **§8만 그대로 써도 되고, 나�
 - Spotify는 “화면 하단의 Now Playing bar를 탭해 queue를 연다”고 안내한다. 즉 MiniPlayer는 단순
   상태표시가 아니라 full player와 queue로 들어가는 진입점이다. ([Spotify Play Queue](https://support.spotify.com/gm/article/play-queue/))
 - YouTube의 Miniplayer는 탐색 중에도 계속 남고, play/pause·닫기·전체 보기 진입을 제공한다.
-  다만 이는 video 제품의 동작이므로 TuneBox에 그대로 복사하지 않는다. ([YouTube Miniplayer](https://support.google.com/youtube/answer/9162927?co=GENIE.Platform%3DAndroid&hl=en-EN))
+  다만 이는 video 제품의 동작이므로 Music Diary에 그대로 복사하지 않는다. ([YouTube Miniplayer](https://support.google.com/youtube/answer/9162927?co=GENIE.Platform%3DAndroid&hl=en-EN))
 
-### TuneBox 권고
+### Music Diary 권고
 
 - 구조는 `본문 → MiniPlayer → NavFooter`의 세로 stack으로 고정한다. MiniPlayer는 `App.jsx`에
-  전역 mount하고, 어느 탭에서 재생해도 같은 높이와 같은 상태를 유지한다 ([08](08-concept-tunebox.md),
+  전역 mount하고, 어느 탭에서 재생해도 같은 높이와 같은 상태를 유지한다 ([08](08-concept-music-diary.md),
   [09](09-implementation-spec.md) §6).
 - 기본 시각 높이는 **56px**, safe-area는 NavFooter에만 더한다. MiniPlayer 안에는 최소한 다음을 둔다.
   - 40×40 artwork 또는 MoodArtwork
@@ -208,7 +208,7 @@ luna가 작성하고 sol이 검증했다. **§8만 그대로 써도 되고, 나�
   확인 못 함**. 검색으로 찾은 커뮤니티·블로그 이미지는 버전·기기·언어가 달라 normative evidence로
   쓰지 않았다.
 
-### TuneBox 권고
+### Music Diary 권고
 
 - 화면 순서는 다음으로 고정한다.
   1. safe-area 안의 닫기/축소 버튼
@@ -218,7 +218,7 @@ luna가 작성하고 sol이 검증했다. **§8만 그대로 써도 되고, 나�
   5. previous · play/pause · next
   6. favorite · shuffle · repeat · queue 같은 secondary action
 - artwork는 `width: min(100% - 32px, 320px)`로 시작하고 viewport 세로가 짧을 때는 `max-height`
-  제약으로 줄인다. **320px와 16px margin은 TuneBox 구현 권고값이지 Apple/Material 수치가 아니다.**
+  제약으로 줄인다. **320px와 16px margin은 Music Diary 구현 권고값이지 Apple/Material 수치가 아니다.**
   artwork가 transport를 밀어 화면 밖으로 보내면 안 된다.
 - transport의 시각 icon은 24–32px, button hit area는 기존 결정대로 최소 44×44px로 둔다.
   가운데 play/pause는 주변 previous/next보다 크고 대비가 높아야 한다. secondary action은 artwork
@@ -235,7 +235,7 @@ luna가 작성하고 sol이 검증했다. **§8만 그대로 써도 되고, 나�
   구현 난도가 낮고 발표에서 핵심 loop를 보여 준다.
 - **고비용** — artwork 색 추출에 따른 theme 전환, animated artwork, lyrics, output device,
   swipe-to-dismiss와 native-like shared transition. Apple 공개 화면의 모든 기능을 흉내 내는 비용에
-  비해 TuneBox의 local audio MVP 가치가 낮다.
+  비해 Music Diary의 local audio MVP 가치가 낮다.
 
 ## 4. artwork가 있는 track/list row
 
@@ -267,7 +267,7 @@ luna가 작성하고 sol이 검증했다. **§8만 그대로 써도 되고, 나�
   어느 글자 수에서 발생하는지는 공개 문서로 확인 못 함. 제품 화면을 버전 고정 없이 측정한 값처럼
   쓰지 않는다.
 
-### TuneBox 권고
+### Music Diary 권고
 
 - **72px row + 48px square artwork**를 기본으로 한다. title 1줄, artist 1줄의 two-line list가
   파일명 기반 title과 선택 artist를 동시에 보여 주면서도 3줄 row보다 촘촘하다.
@@ -279,7 +279,7 @@ luna가 작성하고 sol이 검증했다. **§8만 그대로 써도 되고, 나�
   사용한다. 색만으로 playing state를 전달하지 않는다. paused는 같은 row tint를 유지하되 icon은
   pause/play 상태로 구분한다.
 - artwork가 없는 picked track도 같은 48px box를 유지하고 MoodArtwork를 넣는다. row마다 artwork
-  유무로 높이를 바꾸면 목록 scan이 깨진다 ([08](08-concept-tunebox.md) §The content problem,
+  유무로 높이를 바꾸면 목록 scan이 깨진다 ([08](08-concept-music-diary.md) §The content problem,
   [09](09-implementation-spec.md) §8).
 
 ### 저비용 vs 고비용
@@ -287,7 +287,7 @@ luna가 작성하고 sol이 검증했다. **§8만 그대로 써도 되고, 나�
 - **저비용** — 64px row, 40px artwork, title 1줄 + artist 1줄, More 하나. 목록이 더 많이 보이지만
   artwork·text·44px action의 여유가 줄어든다.
 - **고비용** — 72px/48px, playing equalizer animation, favorite의 즉시 toggle, queue 상태 badge,
-  swipe action. 제스처는 범위 밖이고, TuneBox는 72px 정적 row만 구현하는 편이 안전하다.
+  swipe action. 제스처는 범위 밖이고, Music Diary는 72px 정적 row만 구현하는 편이 안전하다.
 
 ## 5. artwork 없는 media item의 generative/derived cover art
 
@@ -314,7 +314,7 @@ luna가 작성하고 sol이 검증했다. **§8만 그대로 써도 되고, 나�
 - 결론 — 음악 제품에서 “no artwork → 이 알고리즘”이라는 **합의된 표준은 없음**. 다만 deterministic
   hash fallback과 CSS generated visual은 공개된 실무 패턴이다.
 
-### TuneBox 권고
+### Music Diary 권고
 
 - MoodArtwork는 깨진 이미지 아이콘이 아니라 **정식 artwork 상태**로 취급한다.
 - 입력값은 `MoodId + stable track.id`로 제한한다. 파일명만 hash하면 사용자가 파일명을 바꿀 때
@@ -361,7 +361,7 @@ luna가 작성하고 sol이 검증했다. **§8만 그대로 써도 되고, 나�
 - Spotify·YouTube Music의 현재 mood/filter chip의 exact gap, selected color, overflow behavior는
   공개 support 문서만으로 **확인 못 함**. 제품 screenshot을 design spec으로 오인하지 않는다.
 
-### TuneBox 권고
+### Music Diary 권고
 
 - 5개 mood를 하나의 `radiogroup` 의미로 묶되, 화면은 FilterChip처럼 만든다. 단일 선택이므로
   `aria-pressed` 다중 토글보다 `role="radiogroup"` + radio semantics가 정확하다.
@@ -405,7 +405,7 @@ luna가 작성하고 sol이 검증했다. **§8만 그대로 써도 되고, 나�
 - Apple Music·Spotify의 empty copy/illustration exact 문구와 화면 치수는 공개 support 문서에서
   충분히 확인하지 못했다. **확인 못 함**.
 
-### TuneBox 권고
+### Music Diary 권고
 
 - 구조는 `optional icon/art → heading → one-sentence explanation → one primary action`으로 통일한다.
   action이 없는 filtered-empty만 heading+설명으로 둔다.
@@ -413,7 +413,7 @@ luna가 작성하고 sol이 검증했다. **§8만 그대로 써도 되고, 나�
 - Diary 0건: “오늘의 기분을 남겨 보세요” + `일기 쓰기` 버튼
 - mood filter 결과 0건: “이 분위기의 곡이 아직 없어요” + filter 초기화 또는 설명
 - 검색 0건: query를 그대로 반복하고 “다른 검색어를 입력해 보세요” + clear action
-- illustration은 필수가 아니다. TuneBox는 동일한 MoodArtwork/LP icon을 작은 decorative visual로
+- illustration은 필수가 아니다. Music Diary는 동일한 MoodArtwork/LP icon을 작은 decorative visual로
   재사용하고, text와 button이 의미를 완결하게 한다. 아이콘을 탭해야만 다음 단계로 가는 구조는
   만들지 않는다.
 - empty와 error를 분리한다. 파일 재연결 실패는 “곡이 없음”이 아니라 오류·복구 action 상태다
@@ -445,12 +445,12 @@ luna가 작성하고 sol이 검증했다. **§8만 그대로 써도 되고, 나�
 ### 출시 제품 관찰
 
 - Apple Journal은 text entry에 attached media를 추가하는 출시 사례이며, Music에서 entry를 시작할 수
-  있다는 점에서 TuneBox의 “들은 곡 + 한 줄 감정” loop와 가장 가까운 공개 제품 사례다.
+  있다는 점에서 Music Diary의 “들은 곡 + 한 줄 감정” loop와 가장 가까운 공개 제품 사례다.
   ([Apple Journal에 쓰기](https://support.apple.com/guide/iphone/write-in-your-journal-iph9824e83ce/26/ios/26))
 - Apple Journal의 실제 music attachment card의 고정 artwork 크기·row height·overflow 위치는
-  공개 사용 설명서에서 **확인 못 함**. 이를 TuneBox의 pixel spec으로 주장하지 않는다.
+  공개 사용 설명서에서 **확인 못 함**. 이를 Music Diary의 pixel spec으로 주장하지 않는다.
 
-### TuneBox 권고
+### Music Diary 권고
 
 - DiaryCard는 하나의 card 안에 다음 순서를 둔다.
   1. local date + mood badge/icon
@@ -462,7 +462,7 @@ luna가 작성하고 sol이 검증했다. **§8만 그대로 써도 되고, 나�
 - media reference는 full player의 복제물이 아니다. 재생 버튼을 누르면 global player state만 바뀌고,
   DiaryCard의 row는 현재 곡 title·playing state만 갱신한다.
 - 삭제된 track은 entry에서 제거하지 않고 `삭제된 곡` label과 neutral artwork를 보여 준다. 이것은
-  diary의 기록을 조용히 바꾸지 않기 위한 data contract 결정이다 ([08](08-concept-tunebox.md) §Data contract).
+  diary의 기록을 조용히 바꾸지 않기 위한 data contract 결정이다 ([08](08-concept-music-diary.md) §Data contract).
 - card 안에 또 하나의 큰 Card를 넣지 않고 divider·surface tint로 attached media가 연결된 block임을
   보인다. text와 media를 모두 primary click target으로 만들지 말고, More와 play는 별도 button으로 둔다.
 
@@ -471,7 +471,7 @@ luna가 작성하고 sol이 검증했다. **§8만 그대로 써도 되고, 나�
 - **저비용** — diary text 아래 compact media row, play button, 삭제된 곡 fallback. data model과
   화면 구조가 단순하다.
 - **고비용** — media row inline scrubber, 여러 track reorder, attachment drag, full-screen preview.
-  Apple Journal에는 attachment reorder가 있지만 TuneBox는 제스처와 drag를 금지했으므로 MVP에서
+  Apple Journal에는 attachment reorder가 있지만 Music Diary는 제스처와 drag를 금지했으므로 MVP에서
   제외한다 ([09](09-implementation-spec.md) §8).
 
 ## 조사 한계와 결정 원칙
@@ -481,7 +481,7 @@ luna가 작성하고 sol이 검증했다. **§8만 그대로 써도 되고, 나�
 - 현재 Apple HIG는 tab bar의 “5개 이하”와 safe area를 말하지만 iPhone tab bar의 수치, 현재 Music row
   수치, MiniPlayer 높이를 공개하지 않는다. 이 값은 `확인 못 함`으로 남긴다.
 - 5개 탭은 Apple의 기본 5개 이하 권고에는 들어오지만 Material 구버전의 항목 최소 80dp에는 맞지
-  않는다. **따라서 5개를 유지하되 72px 폭·64px web bar·전체 label을 선택하는 것이 TuneBox의
+  않는다. **따라서 5개를 유지하되 72px 폭·64px web bar·전체 label을 선택하는 것이 Music Diary의
   의도적인 절충**이다.
 - 짧은 일정에서는 먼저 tab bar·MiniPlayer·TrackRow·EmptyState를 구현하고, full player의 secondary
   action과 generative art를 후순위로 둔다. 단, artwork placeholder는 데이터가 없는 오류가 아니라
@@ -495,7 +495,7 @@ luna가 작성하고 sol이 검증했다. **§8만 그대로 써도 되고, 나�
 | MiniPlayer | 56px, 40px artwork, title/artist, pause·next 44px, bar 위에 stack, `idle`이면 숨김, tap → full player | [Apple Music controls](https://support.apple.com/en-ng/guide/iphone/iph676daac9b/26/ios/26) · [Spotify queue](https://support.spotify.com/gm/article/play-queue/) |
 | Full-screen player | safe-area close → square art 280–320px 권고 → title/artist → 44px touch scrubber → previous/play/next → secondary actions | [Apple Playing audio](https://developer.apple.com/design/human-interface-guidelines/playing-audio) · [Media3 PlayerView](https://developer.android.com/reference/kotlin/androidx/media3/ui/PlayerView) |
 | TrackRow | 72px two-line row, 48px artwork, title/artist 각 1줄 ellipsis, row primary play, trailing More 44px, playing tint+icon+`aria-current` | [Material lists](https://m1.material.io/components/lists.html) · [Spotify queue](https://support.spotify.com/gm/article/play-queue/) |
-| MoodArtwork | stable `MoodId + track.id`, 5 mood palette, deterministic gradient/LP pattern, 같은 track은 모든 화면에서 동일, broken-image 금지 | [GitHub Identicons](https://github.blog/news-insights/company-news/identicons/) · [MDN gradients](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Images/Using_gradients) · [08](08-concept-tunebox.md) |
+| MoodArtwork | stable `MoodId + track.id`, 5 mood palette, deterministic gradient/LP pattern, 같은 track은 모든 화면에서 동일, broken-image 금지 | [GitHub Identicons](https://github.blog/news-insights/company-news/identicons/) · [MDN gradients](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Images/Using_gradients) · [08](08-concept-music-diary.md) |
 | Mood chip group | single-select radiogroup, 32–36px visual chip, 44px+ hit area, 8px gap, one-row horizontal scroll, selected fill+check/border | [Material FilterChip](https://developer.android.com/develop/ui/compose/quick-guides/content/create-chip) · [Material chips](https://m1.material.io/components/chips.html) |
 | EmptyState | optional decorative icon → heading → one sentence → one primary action; filtered-empty는 action 선택, error와 분리 | [Material empty states](https://m1.material.io/patterns/empty-states.html) · [Polaris Empty state](https://polaris-react.shopify.com/components/layout-and-structure/empty-state) |
 | DiaryCard + media | date/mood → text → 48px artwork media row → play 44px → More; 삭제된 곡 label 유지; nested card·drag 제외 | [Material cards](https://m1.material.io/components/cards.html) · [Apple Journal](https://support.apple.com/guide/iphone/write-in-your-journal-iph9824e83ce/26/ios/26) |

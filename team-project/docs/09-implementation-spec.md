@@ -1,7 +1,7 @@
 # 09 · 구현 명세 — 팀원이 이 문서를 보고 코딩한다
 
 작성 2026-08-05. 대상 독자는 **코드를 작성하는 팀원**이다.
-`08-concept-tunebox.md`(제품 결정)와 `07-music-player-plan.md`(오디오 규칙·
+`08-concept-music-diary.md`(제품 결정)와 `07-music-player-plan.md`(오디오 규칙·
 접근성·플랫폼 제약)를 이미 읽었다고 가정한다.
 
 ## 0. 역할과 스택
@@ -123,9 +123,9 @@ listEntries()            upsertEntry(entry)       entriesByMood(mood)
 | 상태 | 사는 곳 | 이유 |
 | --- | --- | --- |
 | `PlayerState` | **메모리만** (`player.js`) | 새로고침하면 사라지는 게 맞다 |
-| `Track[]` | localStorage `tunebox:v1:tracks` | |
-| `DiaryEntry[]` | localStorage `tunebox:v1:diary` | |
-| 스키마 버전 | `tunebox:v1:schemaVersion` | 나중에 필드가 늘 때 필요 |
+| `Track[]` | localStorage `musicdiary:v1:tracks` | |
+| `DiaryEntry[]` | localStorage `musicdiary:v1:diary` | |
+| 스키마 버전 | `musicdiary:v1:schemaVersion` | 나중에 필드가 늘 때 필요 |
 
 - 자료 구조는 `08` §Data contract가 원본이다. **여기서 바꾸지 말 것**
 - **메타데이터만 저장하고 파일은 다시 고르게 한다.** 이는 API 한계가 아니라
@@ -176,7 +176,7 @@ listEntries()            upsertEntry(entry)       entriesByMood(mood)
 - **`PlayerSheet`는 `App.jsx`에 마운트한다.** 특정 탭 소유가 아니다. 어느 탭에서
   재생을 시작해도 같은 시트가 뜬다
 - **설정을 계정 화면처럼 만들지 말 것.** 로그인·프로필 사진·회원 정보 없음
-- **전체 삭제는 `tunebox:*` 키만 지운다.** `localStorage.clear()` 금지
+- **전체 삭제는 `musicdiary:*` 키만 지운다.** `localStorage.clear()` 금지
 - 검색은 **내 트랙만** 대상이다. 카탈로그가 없다
   - 한글 검색 — 저장 필드와 질의를 **NFC 정규화**, 영문 소문자화, 질의를 토큰으로
     쪼개 **전 토큰이 title·artist·fileName 중 어딘가에 매치**되면 통과
@@ -238,5 +238,5 @@ listEntries()            upsertEntry(entry)       entriesByMood(mood)
 
 ## Related
 
-- `08-concept-tunebox.md` — 제품 결정 · 자료 구조 원본
+- `08-concept-music-diary.md` — 제품 결정 · 자료 구조 원본
 - `07-music-player-plan.md` — 오디오 포맷 규칙 · 접근성 · 플랫폼 제약

@@ -43,6 +43,6 @@ GPT 계열도 LLM이고 영어 지시를 더 정확히 따르기 때문이다.
 
 ## Related
 
-- `../08-concept-tunebox.md` — 제품 결정
+- `../08-concept-music-diary.md` — 제품 결정
 - `../09-implementation-spec.md` — 구현 명세
 - `../../nyangbti/docs/prompts/README.md` — 같은 규칙의 냥BTI 쪽 기록
