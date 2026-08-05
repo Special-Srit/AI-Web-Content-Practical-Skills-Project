@@ -15,6 +15,7 @@
 | --- | --- | --- |
 | `01-plan-review-prompt.md` | `08`·`07` 계획의 타당성·사실 검증 (BLOCKER 4건 포함 18건 발견) | Codex gpt-5.6-sol, effort high |
 | `02-component-patterns-research-prompt.md` | `11-component-patterns-research.md` — shadcn에 없는 컴포넌트의 업계 패턴 조사 | Codex gpt-5.6-luna, effort high |
+| `03-pattern-research-review-prompt.md` | 위 조사의 검증 (§1은 Claude가 먼저 검증해 404·labs 문제 발견) | Codex gpt-5.6-sol, effort high |
 
 ## 언어 — 영어로 쓴 이유
 
