@@ -281,7 +281,8 @@ IA에는 서로 겹치는 분류가 **세 개** 있다. 전부 같은 질문에 
 1. ~~Mood vocabulary~~ → **정함**: calm·flutter·comfort·focus·longing (§Data contract)
 2. **Bundled demo set** — 누가 구하고 라이선스를 확인할지. **CC0 또는 CC BY만**
 3. ~~Artwork strategy~~ → **정함**: 기분 기반 플레이스홀더 하나로 통일. 번들 아트 없음
-4. ~~Stack~~ → **정함**: React + Vite. 강사가 웹에서 보이는 것이면 무엇이든 허용
+4. ~~Stack~~ → **정함**: React + Vite + shadcn. 강사가 웹에서 보이는 것이면 무엇이든 허용하며,
+   **팀 프로젝트에도 적용됨을 08-05 저녁에 확인**(냥BTI 기준으로만 받았던 승인이 해소됨)
 5. 기분 플레이스홀더의 시각적 형태 — 디자인 단계에서
 
 ## The concept design is a 무드보드, not a wireframe

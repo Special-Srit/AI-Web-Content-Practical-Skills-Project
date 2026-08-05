@@ -43,8 +43,8 @@ scope rather than preference. A framework answer is no longer wrong here.
 - `team-project/` is **Music Diary** (음악 일기) by team **Clova (클로바)**, React + Vite + shadcn. The name is
   **frozen** — see `DECISIONS.md`. Do not propose renaming it, and do not "correct"
   the older names left in `team-project/docs/prompts/`; those are a verbatim record.
-- `team-project/` is **not** covered by this — the approval was asked and granted for 냥BTI.
-  Confirm separately before assuming it applies there.
+- **`team-project/` is covered too** — confirmed with the instructor 2026-08-05 (evening).
+  React is approved for both projects; the earlier "냥BTI only" caveat is resolved.
 - Still a **web app that runs in a browser without installation.** The approval widened the
   framework choice, not the form factor. No native targets.
 

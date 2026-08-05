@@ -2,6 +2,20 @@
 
 Newest first. Records *why*, so choices aren't re-litigated later.
 
+## 2026-08-05 (evening) — React approved for `team-project/` too
+
+The framework approval earlier that day was asked and granted with 냥BTI in mind, so
+it was recorded as **not** automatically extending to the graded project. Confirmed
+with the instructor the same evening that it does.
+
+Both projects are therefore **React + Vite + shadcn**, which is what `09` and `10`
+already specify. Nothing to change in the specs — only the caveat is removed, from
+`CLAUDE.md`, `AGENTS.md` and both copies of `08`.
+
+Worth keeping the reason the caveat existed: an approval given for one artifact does
+not silently widen to another. It was cheap to ask and would have been expensive to
+assume wrongly, since the teammate is about to build on it.
+
 ## 2026-08-05 — team name is **Clova (클로바)**
 
 Team name for the graded project, distinct from the app name (**Music Diary** /
