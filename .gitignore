@@ -23,3 +23,12 @@ package-lock.json
 # scratch
 tmp/
 *.log
+
+# generated deck — rebuild with presentation/build_deck.py, don't track the binary.
+# Each rebuild would otherwise add a new multi-MB blob to permanent history.
+*.pptx
+
+# lossless image masters, kept locally only. The committed .jpg versions are what
+# build_deck.py uses (10.2MB PNG -> 1.6MB JPEG at q82, visually equivalent at
+# deck size). Back these up outside git if they matter.
+nyangbti/assets/*.png
