@@ -1,12 +1,43 @@
 # Project rules — AI 활용 웹콘텐츠 실무역량 과정 미니 프로젝트
 
-Read this first. Context established 2026-08-03; see `docs/DECISIONS.md` for why
+Read this first. Context established 2026-08-03; see `DECISIONS.md` for why
 each choice was made.
+
+**Tell any subagent which project folder it's working in.** They all default to
+asking rather than guessing, and a misfiled artifact breaks the traceability the
+`critic` agent checks.
 
 ## What this is
 
-A web app built AI-assisted end to end (planning → design → code) as the
-deliverable for a 10-day intensive course.
+Web apps built AI-assisted end to end (planning → design → code) for a 10-day
+intensive course. **Two projects, one folder each — keep them separate.**
+
+| Folder | Project | Why it exists |
+| --- | --- | --- |
+| `nyangbti/` | 냥BTI — 고양이 성격 유형 검사 웹앱 | The instructor's own worked example. Assigned 08-03 so the class rehearses the full planning pipeline on a topic he has already demoed. **A portfolio piece, not a service to launch.** |
+| `team-project/` | The graded deliverable presented 08-14 | Topic undecided; work starts 08-05. Folder renamed once the topic lands. |
+
+### 냥BTI is a portfolio piece — judge decisions accordingly
+
+It will not ship. So the test for any decision is **"would a reviewer or
+interviewer find this convincing?"**, not "would this win the market."
+
+- **Doesn't matter:** speed to market, beating DBTI's announced CBTI, user
+  acquisition, monetisation, retention.
+- **Does matter:** the planning stages actually connecting to each other, every
+  claim traceable to a source, visible finish, and being able to explain why each
+  choice was made.
+- **Still matters more than ever:** no invented competitors or statistics. A
+  reviewer can search them. The market research is a real course requirement and
+  an unsourced plan is the first thing anyone attacks.
+- Where a tradeoff has no clean answer, **document the tension rather than hiding
+  it** — showing you knew the limit reads better than papering over it. The
+  Feline Five 5-factor vs. MBTI 4-axis mismatch is the live example; see
+  `nyangbti/docs/02-market-research.md`.
+
+Never mix artifacts between them. Research, personas, and design for 냥BTI stay
+in `nyangbti/docs/` even if the team later picks a similar topic — the two have
+different constraints and the 냥BTI work is bounded by the instructor's example.
 
 | | |
 | --- | --- |
@@ -14,12 +45,30 @@ deliverable for a 10-day intensive course.
 | Presentation | 2026-08-14 — mandatory attendance |
 | Usable build days | ~7.5 (presentation day, field trip, diagnostic eat the rest) |
 | Stack | plain HTML · CSS · JavaScript — **no React/Vue** (course scope) |
-| Form factor | web app: runs in a browser without install; responsive if time allows |
+| Form factor | web app: runs in a browser without install. **Mobile-first — the phone layout is the primary target, desktop is the adaptation.** Not "responsive if time allows" |
 | Instructor | 이수경 선생님 |
 
-**Still undecided as of day 1:** the topic (08-03 was market research only) and
-whether this is solo or a 2-person team (decided 08-04). Don't scaffold app
-structure on a guess — wait for the topic.
+**Settled 08-03 (1-4):** **2인 1조 teams** — confirmed, not solo. The instructor
+judged larger groups inefficient.
+
+**Schedule as of 08-03:**
+
+| Date | What happens |
+| --- | --- |
+| 08-04 (화) | **현장 학습** — no class progress, no time for team work |
+| 08-05 (수) onward | 오전 = 냥BTI · 오후 = 팀 프로젝트 |
+
+**Still undecided:** the team project's topic. Don't scaffold `team-project/` app
+structure on a guess — wait for it. 냥BTI is fixed and can proceed.
+
+**냥BTI's status, in the instructor's own words:** it is *not* the main project —
+the team project is. But "잘 만들면 얘도 포폴로 쓰셔도 되고요," and the team project
+must follow **the same order and format** 냥BTI is built in. So 냥BTI doubles as
+the template for the graded work; sloppiness here propagates.
+
+Immediate 냥BTI task he set: turn the competitor analysis into a **발표 자료**,
+pulling out only the important parts. He said explicitly **don't polish the
+visuals** — focus on arranging the content.
 
 ## Git identity — read before committing
 
@@ -41,12 +90,24 @@ personal details, no recordings.
 ## Layout
 
 ```
-docs/     planning artifacts, in pipeline order
-src/      web app source
-assets/   images · icons
+nyangbti/         DECISIONS.md and the two README/CLAUDE files are the only
+  docs/           root-level files. Everything else belongs to a project.
+  src/
+  assets/
+  presentation/   build_deck.py + generated .pptx
+team-project/     same subfolders
 ```
 
-Planning pipeline taught in class, and the order `docs/` should follow:
+**The deck is generated, not hand-built.** `nyangbti/presentation/build_deck.py`
+renders the outline to a Rev 7-compliant `.pptx`. Edit the script and re-run rather
+than editing the file by hand, or the next build overwrites the change. It needs
+`python-pptx` (a venv lives in the session scratchpad, outside the repo) and
+self-verifies after saving: it walks every shape and fails the build if anything
+crosses `CONTENT_BOT = 5.08"`. Don't weaken that check — a build-time-only version
+of it already missed three real overflows inside panels.
+
+Planning pipeline taught in class, and the order each project's `docs/` should
+follow — the numbering is what the subagents in `.claude/agents/` read and write:
 
 1. 주제 선정 · 시장조사 · 경쟁사 분석
 2. 페르소나
@@ -79,7 +140,27 @@ is how he learns the tool.
 | --- | --- |
 | Author/edit Figma nodes (grey-box scaffolds, auto-layout) | `figma-bridge` MCP |
 | Read a Figma file, design context, codegen | official `claude_ai_Figma` MCP |
-| Wireframe of record | text structure in `docs/04-design.md` |
+| Wireframe of record | text structure in `<project>/docs/04-design.md` |
+| Presentation deck | **PowerPoint (.pptx)**, assembled by Srit |
+
+**Deck workflow:** produce the slide-by-slide content — titles, bullets, tables,
+speaker script — in Korean, as a markdown outline in
+`<project>/docs/presentation-outline.md`. **Srit assembles it in PowerPoint and
+does the layout, colour, and images.** Same division as Figma and Unity: structure
+from here, visual execution by hand.
+
+Chosen over Canva and Google Slides for offline reliability — it's also the tool
+the instructor named first. **Microsoft PowerPoint is installed on the MacBook**
+(along with Word and Excel), so no conversion step is needed.
+
+**All work happens on Srit's own MacBook, which travels with him** — so the academy
+PC's reset behaviour is irrelevant here, and a local file carries no loss risk. Treat
+"the academy PC might wipe on shutdown" (noted in 1-3) as not applying to this
+project's artifacts.
+
+The instructor's instruction for the 냥BTI deck is **don't polish the visuals —
+focus on arranging the content.** So depth of content over slide count, and don't
+suggest visual flourishes.
 
 **Never output a wireframe or mockup as a flat image.** The instructor's demo
 failed precisely there — AI emitted the wireframe as an image, it had a missing

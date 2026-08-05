@@ -8,10 +8,22 @@ AI를 활용해 기획부터 코딩까지 진행하는 웹앱 미니 프로젝�
 | --- | --- |
 | 과정 | AI 활용 웹콘텐츠 실무역량 과정 (2026-08-03 → 08-14) |
 | 발표 | 2026-08-14 (필수) |
-| 주제 | **미정** — 08-03 시장조사 단계 |
-| 팀/개인 | **미정** — 08-04 결정 |
+| 팀/개인 | **2인 1조** — 08-03 확정 |
+| 진행 | 08-04 현장 학습 · 08-05부터 오전 냥BTI / 오후 팀 프로젝트 |
 | 스택 | HTML · CSS · JavaScript (리액트·뷰 미사용) |
 | 형태 | 웹앱 — 설치 없이 웹에서 앱처럼 동작, 반응형 목표 |
+
+## 프로젝트 2개
+
+한 저장소에 두 프로젝트를 폴더로 분리해서 진행.
+
+| 폴더 | 프로젝트 | 상태 |
+| --- | --- | --- |
+| `nyangbti/` | **냥BTI** — 고양이 성격 유형 검사 웹앱. 강사 예제를 따라가며 기획 파이프라인 연습. **실제 출시가 아닌 포트폴리오용** | 08-03 시장조사 · 경쟁사 분석 진행 |
+| `team-project/` | **팀 프로젝트** — 발표 대상 본 과제(2인 1조). 주제 미정 | 08-05 시작 |
+
+- 두 폴더는 각각 `docs/` `src/` `assets/` 를 따로 가짐
+- 팀 프로젝트 주제 확정 시 폴더명 변경 예정
 
 ## 기획 순서
 
@@ -30,10 +42,16 @@ AI를 활용해 기획부터 코딩까지 진행하는 웹앱 미니 프로젝�
 ## 구조
 
 ```
-docs/     기획 산출물 (페르소나, IA, 플로우 등)
-src/      웹앱 소스
-assets/   이미지 · 아이콘
+nyangbti/         냥BTI
+  docs/           기획 산출물 — 위 기획 순서대로 01~04 번호
+  src/            웹앱 소스
+  assets/         이미지 · 아이콘
+team-project/     팀 프로젝트 (동일 구조)
+DECISIONS.md      결정 기록 — 저장소 전체 공통
 ```
+
+저장소 루트에는 공통 문서(`README.md` · `CLAUDE.md` · `DECISIONS.md`)만 두고,
+산출물은 전부 프로젝트 폴더 안에 둠.
 
 ## 관련 노트 (Obsidian)
 
@@ -43,14 +61,19 @@ assets/   이미지 · 아이콘
 | 회차 | 노트 경로 |
 | --- | --- |
 | 1-1 (OT) | `Study/AI-Web-Content-Practical-Skills/KR/오리엔테이션-KR.md` (영문: `Eng/Orientation-Eng.md`) |
-| 1-2 | `Study/AI-Web-Content-Practical-Skills/KR/Week-1/1-2-기획-프로세스와-웹앱-KR.md` |
+| 1-2 | `Study/AI-Web-Content-Practical-Skills/KR/Week-1/Periods/1-2-기획-프로세스와-웹앱-KR.md` |
+| 1-3 | `Study/AI-Web-Content-Practical-Skills/KR/Week-1/Periods/1-3-계정-세팅과-프로젝트-기능-KR.md` |
+| 1-4 | `Study/AI-Web-Content-Practical-Skills/KR/Week-1/Periods/1-4-페르소나와-UX-KR.md` |
+| 1-5 | `Study/AI-Web-Content-Practical-Skills/KR/Week-1/Periods/1-5-페르소나-발표자료-만들기-KR.md` |
+| 1-6 | `Study/AI-Web-Content-Practical-Skills/KR/Week-1/Periods/1-6-여정맵-만들기-KR.md` |
+| 1일차 종합 | `Study/AI-Web-Content-Practical-Skills/KR/Week-1/1일차-종합-KR.md` (영문: `Eng/Week-1/Day-1-Summary-Eng.md`) |
 | 폴더 규칙 | `Study/AI-Web-Content-Practical-Skills/CLAUDE.md` |
 
-회차 노트는 `KR/Week-<주차>/<일>-<교시>-<주제>-KR.md` 규칙으로 쌓이므로, 위 표에
+회차 노트는 `KR/Week-<주차>/Periods/<일>-<교시>-<주제>-KR.md` 규칙으로 쌓이므로, 위 표에
 없는 회차는 해당 폴더에서 교시 번호로 찾으면 됨. 일자별 종합 노트는
 `KR/Week-N/N일차-종합-KR.md` 와 `Eng/Week-N/Day-N-Summary-Eng.md`.
 
-이 저장소의 기획 산출물(`docs/`)은 위 노트의 기획 파이프라인 순서를 따라감.
+각 프로젝트의 기획 산출물(`<프로젝트>/docs/`)은 위 노트의 기획 파이프라인 순서를 따라감.
 
 ---
 
@@ -59,9 +82,12 @@ assets/   이미지 · 아이콘
 A web app built AI-assisted end to end, from planning through code, for a
 10-day intensive course (2026-08-03 → 08-14). Presented on the final day.
 
-Topic and team-vs-solo are still undecided as of day 1; stack is plain
-HTML/CSS/JavaScript with no framework, targeting a responsive web app that runs
-without installation.
+Two projects live here, one folder each. **`nyangbti/`** is 냥BTI, a cat
+personality-test web app that follows the instructor's own worked example as
+planning practice. **`team-project/`** is the graded deliverable presented on
+08-14; its topic is undecided and work starts 08-05. Teams of 2 were confirmed
+08-03. Stack is plain HTML/CSS/JavaScript with no framework, targeting a
+responsive web app that runs without installation.
 
 Class notes live in a private Obsidian vault under
 `Study/AI-Web-Content-Practical-Skills/` — see 관련 노트 above for per-period

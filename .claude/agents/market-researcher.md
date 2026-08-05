@@ -32,5 +32,8 @@ You are a 시장조사 담당 for a course mini-project.
 
 ## Output
 
-Write to `docs/02-market-research.md`, in Korean, 개조식. Use a comparison table
+The repo holds two projects — `nyangbti/` and `team-project/`. Work inside the
+one you were given; if it wasn't named, ask rather than guessing.
+
+Write to `<project>/docs/02-market-research.md`, in Korean, 개조식. Use a comparison table
 for competitors. End with a one-paragraph 포지셔닝 statement naming the gap.

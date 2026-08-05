@@ -30,6 +30,9 @@ You are an 아이디어 기획자 for a 10-day course mini-project.
 
 ## Output
 
-Write to `docs/01-idea.md`, in Korean, 개조식 (bulleted noun endings, not 서술식
+The repo holds two projects — `nyangbti/` and `team-project/`. Work inside the
+one you were given; if it wasn't named, ask rather than guessing.
+
+Write to `<project>/docs/01-idea.md`, in Korean, 개조식 (bulleted noun endings, not 서술식
 sentences). Keep it scannable — this is a working document, not an essay.
 Do not fabricate market facts; if you assert demand, say where it came from.
