@@ -26,7 +26,18 @@ screens — matches the class's own minimum bar (주요 화면 흐름 하나는 
 **Result (same day) — all 6 verified against the brief, no rework needed.** Block order on
 S3 (처방 above 하지 마세요) came out correct, the 하지 마세요 block used neutral icons with no
 red/warning styling, no English text or mascot style leaked in. Files at
-`nyangbti/assets/ui-mockup/`. Next pipeline step (코딩) not started yet.
+`nyangbti/assets/ui-mockup/`.
+
+**Follow-up same day — Srit flagged the design quality as too flat/simple despite correct
+structure.** Three independent reviews (Claude's own read, Codex sol critiquing the images,
+Codex luna researching sourced design-system evidence) converged on the same 5 fixes without
+seeing each other's output: one restrained elevation system, the Stone palette showing up as
+surfaces not just text, one unified icon treatment, a codified type-weight hierarchy, and one
+repeated motif per "quiet" screen instead of photos everywhere. Written up as implementation
+guidance in `nyangbti/docs/06-design-system.md` §9, with luna's real citations (Material 3,
+Atlassian, Fluent 2, Radix Themes shadow tokens) attached to each point. Not a new image
+regeneration — this is CSS/Tailwind guidance for when coding happens, since the mockups'
+*structure* was already correct and only the *visual density* needed the fix.
 
 ## 2026-08-06 — moodboard method differs by project, deliberately
 

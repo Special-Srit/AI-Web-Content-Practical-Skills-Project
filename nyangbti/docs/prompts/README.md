@@ -23,6 +23,8 @@
 | `06-mobile-ui-library-research-prompt.md` | `07-mobile-ui-libraries-research.md` — 모바일 우선 UI 라이브러리 조사 | Codex gpt-5.6-luna, effort high |
 | `07-design-system-review-prompt.md` | `06-design-system.md`와 `07`의 사실 검증 | Codex gpt-5.6-sol, effort high |
 | `08-ui-mockup-generation-prompt.md` | 주요 화면 6장 고해상도 UI 목업 생성 (`nyangbti/assets/ui-mockup/`) | Codex imagegen 스킬 |
+| `09-design-critique-prompt.md` | 위 목업 6장의 디자인 품질 검토("너무 단순함" 진단) | Codex gpt-5.6-sol, effort high |
+| `10-design-polish-research-prompt.md` | elevation·아이콘·타이포·색상 표면화 근거 조사 → `06-design-system.md` §9 | Codex gpt-5.6-luna, effort high |
 
 `04-design.md` 자체는 `.claude/agents/ux-ui-designer.md` 역할 정의를 그대로 쓰는
 서브에이전트가 작성했으므로, 그 프롬프트는 **역할 파일 + 전달한 결정 사항**의 조합이다.
@@ -53,3 +55,8 @@
   자기가 검토하면 안 된다**는 것의 사례.
 - **조사 결과가 "적합한 대안 없음"으로 끝난 것도 그대로 남겼다** (`06`). 억지로
   추천을 만들지 않는 편이 조사로서 정직하다.
+- **세 방향에서 독립적으로 검토해 같은 결론에 수렴한 사례** (08-06, `09`·`10`). UI
+  목업이 "너무 단순하다"는 지적에 대해 ① Claude(스릿과 같은 화면을 직접 봄) ② sol(이미지
+  검토, 그림자·서피스·아이콘·타이포·색 5개 지적) ③ luna(같은 5개를 Material 3·Atlassian·
+  Fluent 등 실제 출처로 뒷받침)가 서로 모르는 채로 같은 결론에 도달했다. 세 검토 중
+  하나가 이미지를 만든 모델과 겹치지 않게 배치한 것도 의도적이다.

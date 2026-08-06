@@ -140,7 +140,7 @@
 1. ~~**React + shadcn/ui 사용 가능 여부**~~ → **해결 (2026-08-05).** React·Vue·Svelte 모두 허용
 2. ~~React 불가 시 **Tailwind CSS는 허용되는가**~~ → 경로 A로 확정되어 실익 없음. Tailwind는 shadcn/ui의 전제
 3. 폰트 3종 (미발표) — **미해결**
-4. 팀 프로젝트에도 같은 스택을 쓸 수 있는가 — **미해결.** 냥BTI 승인이 팀 프로젝트 승인은 아님
+4. ~~팀 프로젝트에도 같은 스택을 쓸 수 있는가~~ → **해결 (2026-08-05 저녁).** 팀 프로젝트도 React·Vue·Svelte 허용 확인됨(`DECISIONS.md`)
 
 ## 8. 피그마 키트 — 공식 문서가 등재한 무료 2종
 
@@ -155,9 +155,84 @@ shadcn 공식 문서 `ui.shadcn.com/docs/figma`가 등재한 무료 파일. 40�
 - **키트를 고른 뒤 실제 컴포넌트 치수를 직접 재 볼 것** — 공식 문서는 두 파일을 등재만 할 뿐 각 컴포넌트의 현재 치수를 보증하지 않는다(sol 검토). shadcn 기본값을 그대로 재현했다면 §3의 44/48 오버레이가 그대로 필요하다
 - 현재 와이어프레임 파일(`Concept`, 미저장)과 별개 파일로 두고, 와이어프레임은 근거로 남길 것
 
+## 9. 시각적 밀도·질감 보정 (2026-08-06, sol 검토 + luna 조사)
+
+UI 목업 6장(`nyangbti/assets/ui-mockup/`, §Related의 프롬프트 08)이 구조·내용은 맞지만
+"디자인 관점에서 너무 단순하다"는 평가를 받았다. sol의 이미지 검토와 luna의 근거 조사가
+**독립적으로 같은 결론 5개에 수렴**했고, luna는 각 결론을 실제 디자인 시스템 출처로
+뒷받침했다. 코딩 시 그대로 적용할 것 — 새 팔레트나 컨셉 변경이 아니라 **이미 정한 Stone
+팔레트를 UI 크롬에도 드러내는 밀도 보정**이다.
+
+### 핵심 원칙 — 두 검토가 공통으로 경고한 것
+
+**"단순함"과 "미완성"은 다르다.** S2(문항)·S3-c(저장 시트)·T2(내 기록)가 다른 화면보다
+차분한 것 자체는 정상이다 — 질문·리스트·시트 화면은 원래 히어로 화면보다 조용해야
+한다(Atlassian: raised elevation은 하나의 초점 영역에만, 나머지는 flat). 결함은
+사진이 없다는 것이 아니라 **깊이·질감이 전혀 없어 "잘라낸 사각형"처럼 보인다는 것**.
+따라서 처방은 "화면마다 사진 추가"가 아니라 **하나의 일관된 표면·아이콘·타이포 체계**다.
+
+### 1. 표면·elevation — 두 단계로 제한
+
+- 근거 — Material 3는 elevation을 0~+5 6단계로 제한하고 평상시엔 0~3만 씀
+  ([Material Web elevation](https://material-web.dev/components/elevation/)). Atlassian은
+  "기본 표면은 flat, raised는 하나의 초점 영역에만, overlay는 다이얼로그·시트 전용"이라고
+  명시([Atlassian elevation](https://atlassian.design/foundations/elevation/))
+- 적용 — 카드마다 그림자를 넣지 않는다. **primary(결과 카드) 1곳만 elevated, 나머지는
+  flat + 구분선/여백**
+  - primary: `rounded-2xl bg-stone-50 ring-1 ring-stone-200/80 shadow-[0_2px_8px_-2px_rgb(28_25_23/0.08)]`
+  - secondary 카드: `rounded-xl bg-white ring-1 ring-stone-200/80 shadow-none`
+  - 리스트(T2 등): 카드 그림자 대신 `divide-y divide-stone-200`
+  - 오버레이(S3-c 등): `shadow-[0_8px_24px_-8px_rgb(28_25_23/0.18)]` — 이 등급은 시트·다이얼로그 전용
+
+### 2. Stone 팔레트를 텍스트가 아니라 표면에 쓴다
+
+- 근거 — 지금 목업은 팔레트가 사진에만 있고 UI 크롬은 흑백에 가깝다. Notion은
+  `brown_background`류 톤 배경을 실제 컴포넌트에 쓰고([Notion API changelog](https://developers.notion.com/changelog/block-colors-are-now-supported-in-the-api)),
+  Fluent는 배경·브랜드·보더·그림자 토큰을 분리해 "회색 텍스트 온 화이트"로 뭉개지 않게 함
+  ([Fluent color](https://fluent2.microsoft.design/color))
+- 적용 — 2차 섹션 배경을 `bg-stone-50`으로, primary 버튼은 `bg-stone-900 text-white
+  hover:bg-stone-800`, secondary(낮은 우선순위) 액션은 `bg-stone-100 text-stone-900
+  ring-1 ring-stone-200`
+
+### 3. 아이콘 — 한 체계로 통일
+
+- 근거 — "채운 아이콘이 더 따뜻하다"는 근거는 없음(luna, 검증 못 함이라고 명시). 대신
+  Fluent 2는 평상시 Regular·선택 시에만 Filled를 씀([Fluent 2 iconography](https://fluent2.microsoft.design/iconography)),
+  Material Symbols는 rounded 스타일이 두꺼운 타이포·둥근 요소와 잘 어울린다고 명시
+  ([Material Web icons](https://material-web.dev/components/icon/))
+- 적용 — 현재 화면마다 획 두께·스타일이 섞여 있음(S3의 실뭉치·낚싯대·손하트가 서로 다른
+  선 굵기). **Material Symbols Rounded, medium weight로 통일**, 선택 상태에서만
+  `FILL 1`. 모든 아이콘을 `bg-stone-100 rounded-full` 배지 안에 배치해 동일한 무게감을 줌
+
+### 4. 타이포 위계 — 역할별로 고정
+
+- 근거 — Material 3 type scale과 Apple HIG Dynamic Type 모두 역할마다 크기·굵기·행간이
+  다름([Material 3 typography](https://developer.android.com/develop/ui/compose/designsystems/material3?hl=en),
+  [Apple HIG typography](https://developer.apple.com/design/human-interface-guidelines/typography))
+- 적용 — 결과 제목 `text-[28px]/[34px] font-semibold`, 카드 제목 `font-semibold`,
+  본문 `font-normal`, 날짜·메타 정보 `text-sm text-stone-500`. §3의 16px/14px 최저
+  기준은 유지하되, **굵기·행간까지 역할별로 고정**해 지금처럼 전부 비슷한 무게로 보이지
+  않게 함
+
+### 5. 조용한 화면엔 사진 대신 모티프 하나
+
+- 근거 — Airbnb·Windows 11·Headspace 전부 "차분함"을 절제된 표면 + **모티프 1~2개**
+  (사진 또는 일러스트 또는 재질감)로 만들지, 화면 전체를 사진으로 채우지 않음
+  (Windows 11은 "calm·soft·warm"을 공식 설계 원칙으로 명시:
+  [Windows 11 design principles](https://learn.microsoft.com/en-us/windows/apps/design/design-principles))
+- 적용 — S2엔 선택 상태 `ring-2 ring-stone-400/30` 하나, T2엔 유형별 `border-l-4
+  border-stone-400` 억센트 하나, S3-c엔 시트 자체의 상향 그림자 하나 — **반복되는 작은
+  모티프가 화면 전체에 사진을 넣는 것보다 효과적**
+
+### 적용 범위 — 지금 결정하지 않는 것
+
+이 절은 코딩 시 CSS/Tailwind 값을 이렇게 쓰라는 **구현 지침**이다. 색상 자체(Stone
+확정 여부)·`--radius`·폰트는 여전히 §6 "Srit이 결정할 것" 표를 따른다 — 여기서 제안한
+수치는 Stone 팔레트가 최종 확정된다는 전제의 파생값일 뿐, 팔레트 자체를 바꾸지 않는다.
+
 ## Related
 
 - `04-design.md` §6 — 9화면 와이어프레임 (이 문서의 매핑 대상)
 - `04-ia-structure-research.md` — 44×44 · 48×48 근거의 원 출처
 - `03-ux-research.md` §11-6 — 금지 목록 톤 제약
-- `docs/prompts/` — 발표용 프롬프트 기록
+- `docs/prompts/` — 발표용 프롬프트 기록 (08 UI 목업 생성, 09 sol 검토, 10 luna 조사)
