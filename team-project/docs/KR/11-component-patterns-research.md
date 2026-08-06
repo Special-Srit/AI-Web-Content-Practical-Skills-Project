@@ -365,15 +365,19 @@ luna가 작성하고 sol이 검증했다. **§8만 그대로 써도 되고, 나�
 
 - 5개 mood를 하나의 `radiogroup` 의미로 묶되, 화면은 FilterChip처럼 만든다. 단일 선택이므로
   `aria-pressed` 다중 토글보다 `role="radiogroup"` + radio semantics가 정확하다.
-- 한 줄 non-wrapping horizontal row를 권한다. 360px에서 5개를 모두 보여 주고, chip visual은
+- ~~한 줄 non-wrapping horizontal row를 권한다. 360px에서 5개를 모두 보여 주고~~, chip visual은
   **32–36px**, 각 button hit area는 **44px 이상**, gap은 **8px**로 둔다. label은 모두 3글자
   이하라 `라이브러리` 문제처럼 길이 불균형이 없다.
 - 선택 상태는 filled mood color + high-contrast text + check/icon 또는 명확한 border weight로
   표시한다. 색만으로 선택을 전달하지 않는다. icon library가 없으므로 icon은 단순하고 모든 mood에서
   동일한 box 크기를 유지한다.
-- 다섯 개가 현재 viewport에 모두 들어오지 않는 아주 작은 폭에서는 wrap 대신 horizontal scroll을
+- ~~다섯 개가 현재 viewport에 모두 들어오지 않는 아주 작은 폭에서는 wrap 대신 horizontal scroll을
   허용한다. 단, 첫 화면에서 선택된 chip이 보이도록 scroll 위치를 조정하고, 화면 가장자리에 잘린
-  chip이 있다는 시각 cue를 둔다.
+  chip이 있다는 시각 cue를 둔다.~~
+
+  **정정(§0, 2026-08-05 sol 검토).** 가로 스크롤은 스와이프를 요구하므로 제스처 전면 금지
+  규칙 위반이다. **5개를 항상 전부 노출**하고, 360px에 안 들어가면 **2줄로 줄바꿈**한다.
+  스크롤·scroll-snap·페이드 단서는 전부 삭제.
 
 ### 저비용 vs 고비용
 
@@ -496,6 +500,6 @@ luna가 작성하고 sol이 검증했다. **§8만 그대로 써도 되고, 나�
 | Full-screen player | safe-area close → square art 280–320px 권고 → title/artist → 44px touch scrubber → previous/play/next → secondary actions | [Apple Playing audio](https://developer.apple.com/design/human-interface-guidelines/playing-audio) · [Media3 PlayerView](https://developer.android.com/reference/kotlin/androidx/media3/ui/PlayerView) |
 | TrackRow | 72px two-line row, 48px artwork, title/artist 각 1줄 ellipsis, row primary play, trailing More 44px, playing tint+icon+`aria-current` | [Material lists](https://m1.material.io/components/lists.html) · [Spotify queue](https://support.spotify.com/gm/article/play-queue/) |
 | MoodArtwork | stable `MoodId + track.id`, 5 mood palette, deterministic gradient/LP pattern, 같은 track은 모든 화면에서 동일, broken-image 금지 | [GitHub Identicons](https://github.blog/news-insights/company-news/identicons/) · [MDN gradients](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Images/Using_gradients) · [08](../Eng/08-concept-music-diary.md) |
-| Mood chip group | single-select radiogroup, 32–36px visual chip, 44px+ hit area, 8px gap, one-row horizontal scroll, selected fill+check/border | [Material FilterChip](https://developer.android.com/develop/ui/compose/quick-guides/content/create-chip) · [Material chips](https://m1.material.io/components/chips.html) |
+| Mood chip group | single-select radiogroup, 32–36px visual chip, 44px+ hit area, 8px gap, **5개 항상 전부 노출, 360px 초과 시 2줄 줄바꿈(§0 정정 — 가로 스크롤 아님)**, selected fill+check/border | [Material FilterChip](https://developer.android.com/develop/ui/compose/quick-guides/content/create-chip) · [Material chips](https://m1.material.io/components/chips.html) |
 | EmptyState | optional decorative icon → heading → one sentence → one primary action; filtered-empty는 action 선택, error와 분리 | [Material empty states](https://m1.material.io/patterns/empty-states.html) · [Polaris Empty state](https://polaris-react.shopify.com/components/layout-and-structure/empty-state) |
 | DiaryCard + media | date/mood → text → 48px artwork media row → play 44px → More; 삭제된 곡 label 유지; nested card·drag 제외 | [Material cards](https://m1.material.io/components/cards.html) · [Apple Journal](https://support.apple.com/guide/iphone/write-in-your-journal-iph9824e83ce/26/ios/26) |
