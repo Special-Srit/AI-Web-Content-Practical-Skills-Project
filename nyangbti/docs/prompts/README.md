@@ -22,6 +22,7 @@
 | `05-figma-wireframe-prompt.md` | 피그마 와이어프레임 제작 | Codex, 포그라운드 |
 | `06-mobile-ui-library-research-prompt.md` | `07-mobile-ui-libraries-research.md` — 모바일 우선 UI 라이브러리 조사 | Codex gpt-5.6-luna, effort high |
 | `07-design-system-review-prompt.md` | `06-design-system.md`와 `07`의 사실 검증 | Codex gpt-5.6-sol, effort high |
+| `08-ui-mockup-generation-prompt.md` | 주요 화면 6장 고해상도 UI 목업 생성 (`nyangbti/assets/ui-mockup/`) | Codex imagegen 스킬 |
 
 `04-design.md` 자체는 `.claude/agents/ux-ui-designer.md` 역할 정의를 그대로 쓰는
 서브에이전트가 작성했으므로, 그 프롬프트는 **역할 파일 + 전달한 결정 사항**의 조합이다.

@@ -2,6 +2,49 @@
 
 Newest first. Records *why*, so choices aren't re-litigated later.
 
+## 2026-08-06 — 냥BTI's UI/layout step follows the instructor's demo: AI image → code, no Figma hi-fi pass
+
+The instructor described their own workflow for the class's shared example: moodboard →
+AI-generates the UI/layout image → code directly from that image. This sits in tension with
+this repo's own rule that Srit does visual design himself in Figma (see `CLAUDE.md`'s Tooling
+section) — that rule was written when the only known AI-image problem was *wireframes* being
+unopenable/uneditable, which mattered because the wireframe itself needed to stay editable.
+Here the deliverable is code, not a Figma file, so an unopenable source image stops being the
+blocker it was for wireframes.
+
+**Scoped to 냥BTI only, and to this one pipeline stage.** Chosen because 냥BTI is explicitly the
+portfolio piece meant to demonstrate the instructor's own worked process end-to-end (see
+`CLAUDE.md` "냥BTI is a portfolio piece"), and because asked directly, Srit chose to follow the
+demo rather than keep the Music Diary hand-Figma convention here. Team project's moodboard step
+(when it gets there) was separately decided to go straight into Figma instead — the opposite
+choice — so don't assume this generalizes either direction without re-confirming.
+
+Scope for this pass: 6 screens covering 오세진's main flow only (S1 시작 → S2 문항 → S3 결과 →
+S3-c 저장 시트 → T2 내 기록, plus an isolated nav-footer reference), not all 11 wireframe
+screens — matches the class's own minimum bar (주요 화면 흐름 하나는 끝까지).
+
+**Result (same day) — all 6 verified against the brief, no rework needed.** Block order on
+S3 (처방 above 하지 마세요) came out correct, the 하지 마세요 block used neutral icons with no
+red/warning styling, no English text or mascot style leaked in. Files at
+`nyangbti/assets/ui-mockup/`. Next pipeline step (코딩) not started yet.
+
+## 2026-08-06 — moodboard method differs by project, deliberately
+
+냥BTI's moodboard (pipeline step 7) is built as **one AI-generated composed image**
+(keywords + palette + reference vignettes in a single frame) — mentor confirmed
+either AI generation or manual sourcing is acceptable, and `imagegen` is Codex's
+job per this repo's model-routing rules. An earlier attempt built the same content
+as a Figma page of individual palette-comparison swatches instead of one composed
+image; that page was discarded once the actual expected format ("like concept
+art," one whole image) became clear, and `nyangbti/docs/08-moodboard.md` (the
+keyword/palette research grounding the image prompt) was kept since it's still
+correct and useful independent of how it gets rendered.
+
+**Team project's moodboard, when Music Diary reaches step 7, goes straight into
+Figma instead** — not an AI-generated single image. Recorded here so that choice
+isn't lost between now and whenever the team project actually gets there; don't
+default to repeating the 냥BTI approach without re-confirming this holds.
+
 ## 2026-08-05 (evening) — React approved for `team-project/` too
 
 The framework approval earlier that day was asked and granted with 냥BTI in mind, so
