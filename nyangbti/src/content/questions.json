@@ -1,0 +1,595 @@
+[
+  {
+    "id": "n1",
+    "axisId": "neuroticism",
+    "text": "최근 일주일 동안 낯선 소리나 변화가 있을 때 어떻게 반응하나요?",
+    "options": [
+      {
+        "id": "n1-a",
+        "label": "숨거나 몸을 낮춘다",
+        "poleId": "high",
+        "axisId": "neuroticism"
+      },
+      {
+        "id": "n1-b",
+        "label": "잠시 살피고 평소로 돌아온다",
+        "poleId": "low",
+        "axisId": "neuroticism"
+      },
+      {
+        "id": "n1-c",
+        "label": "관심을 보이며 가까이 간다",
+        "poleId": "low",
+        "axisId": "neuroticism"
+      },
+      {
+        "id": "n1-d",
+        "label": "소리를 내거나 자리를 피한다",
+        "poleId": "high",
+        "axisId": "neuroticism"
+      },
+      {
+        "id": "n1-unknown",
+        "label": "모르겠음 / 관찰 못 함",
+        "poleId": null,
+        "axisId": "neuroticism"
+      }
+    ]
+  },
+  {
+    "id": "n2",
+    "axisId": "neuroticism",
+    "text": "최근 일주일 동안 손님이나 낯선 사람이 오면 어떻게 하나요?",
+    "options": [
+      {
+        "id": "n2-a",
+        "label": "숨은 곳에서 오래 나오지 않는다",
+        "poleId": "high",
+        "axisId": "neuroticism"
+      },
+      {
+        "id": "n2-b",
+        "label": "조금 떨어져서 지켜본다",
+        "poleId": "low",
+        "axisId": "neuroticism"
+      },
+      {
+        "id": "n2-c",
+        "label": "천천히 냄새를 맡으러 간다",
+        "poleId": "low",
+        "axisId": "neuroticism"
+      },
+      {
+        "id": "n2-d",
+        "label": "하악질하거나 빠르게 피한다",
+        "poleId": "high",
+        "axisId": "neuroticism"
+      },
+      {
+        "id": "n2-unknown",
+        "label": "모르겠음 / 관찰 못 함",
+        "poleId": null,
+        "axisId": "neuroticism"
+      }
+    ]
+  },
+  {
+    "id": "n3",
+    "axisId": "neuroticism",
+    "text": "최근 일주일 동안 생활 공간이 바뀌었을 때 어떤 모습이었나요?",
+    "options": [
+      {
+        "id": "n3-a",
+        "label": "평소보다 긴장한 채 주변을 살핀다",
+        "poleId": "high",
+        "axisId": "neuroticism"
+      },
+      {
+        "id": "n3-b",
+        "label": "잠시 둘러본 뒤 적응한다",
+        "poleId": "low",
+        "axisId": "neuroticism"
+      },
+      {
+        "id": "n3-c",
+        "label": "새 공간에서도 편하게 쉰다",
+        "poleId": "low",
+        "axisId": "neuroticism"
+      },
+      {
+        "id": "n3-d",
+        "label": "식사나 놀이를 줄인다",
+        "poleId": "high",
+        "axisId": "neuroticism"
+      },
+      {
+        "id": "n3-unknown",
+        "label": "모르겠음 / 관찰 못 함",
+        "poleId": null,
+        "axisId": "neuroticism"
+      }
+    ]
+  },
+  {
+    "id": "n4",
+    "axisId": "neuroticism",
+    "text": "최근 일주일 동안 만지려 할 때 주로 어떤 반응을 보이나요?",
+    "options": [
+      {
+        "id": "n4-a",
+        "label": "몸을 움츠리거나 피한다",
+        "poleId": "high",
+        "axisId": "neuroticism"
+      },
+      {
+        "id": "n4-b",
+        "label": "원하는 만큼 만지게 둔다",
+        "poleId": "low",
+        "axisId": "neuroticism"
+      },
+      {
+        "id": "n4-c",
+        "label": "잠시 확인하고 다시 편하게 있는다",
+        "poleId": "low",
+        "axisId": "neuroticism"
+      },
+      {
+        "id": "n4-d",
+        "label": "불편한 신호를 빠르게 보낸다",
+        "poleId": "high",
+        "axisId": "neuroticism"
+      },
+      {
+        "id": "n4-unknown",
+        "label": "모르겠음 / 관찰 못 함",
+        "poleId": null,
+        "axisId": "neuroticism"
+      }
+    ]
+  },
+  {
+    "id": "e1",
+    "axisId": "extraversion",
+    "text": "최근 일주일 동안 가족이 방에 들어오면 어떻게 하나요?",
+    "options": [
+      {
+        "id": "e1-a",
+        "label": "먼저 다가와 반긴다",
+        "poleId": "high",
+        "axisId": "extraversion"
+      },
+      {
+        "id": "e1-b",
+        "label": "있던 자리에서 편하게 지켜본다",
+        "poleId": "low",
+        "axisId": "extraversion"
+      },
+      {
+        "id": "e1-c",
+        "label": "관심을 표현하며 주변을 돈다",
+        "poleId": "high",
+        "axisId": "extraversion"
+      },
+      {
+        "id": "e1-d",
+        "label": "혼자 있는 자리를 이어간다",
+        "poleId": "low",
+        "axisId": "extraversion"
+      },
+      {
+        "id": "e1-unknown",
+        "label": "모르겠음 / 관찰 못 함",
+        "poleId": null,
+        "axisId": "extraversion"
+      }
+    ]
+  },
+  {
+    "id": "e2",
+    "axisId": "extraversion",
+    "text": "최근 일주일 동안 놀이를 시작하면 어떤 모습인가요?",
+    "options": [
+      {
+        "id": "e2-a",
+        "label": "사람 쪽으로 적극적으로 다가온다",
+        "poleId": "high",
+        "axisId": "extraversion"
+      },
+      {
+        "id": "e2-b",
+        "label": "혼자서도 조용히 즐긴다",
+        "poleId": "low",
+        "axisId": "extraversion"
+      },
+      {
+        "id": "e2-c",
+        "label": "움직임이 커지고 오래 참여한다",
+        "poleId": "high",
+        "axisId": "extraversion"
+      },
+      {
+        "id": "e2-d",
+        "label": "잠깐 보고 자기 자리로 간다",
+        "poleId": "low",
+        "axisId": "extraversion"
+      },
+      {
+        "id": "e2-unknown",
+        "label": "모르겠음 / 관찰 못 함",
+        "poleId": null,
+        "axisId": "extraversion"
+      }
+    ]
+  },
+  {
+    "id": "e3",
+    "axisId": "extraversion",
+    "text": "최근 일주일 동안 새로운 물건을 놓으면 어떻게 하나요?",
+    "options": [
+      {
+        "id": "e3-a",
+        "label": "바로 다가가 냄새를 맡는다",
+        "poleId": "high",
+        "axisId": "extraversion"
+      },
+      {
+        "id": "e3-b",
+        "label": "멀리서 잠시 지켜본다",
+        "poleId": "low",
+        "axisId": "extraversion"
+      },
+      {
+        "id": "e3-c",
+        "label": "앞발로 살피며 주변을 탐색한다",
+        "poleId": "high",
+        "axisId": "extraversion"
+      },
+      {
+        "id": "e3-d",
+        "label": "익숙해질 때까지 관심을 두지 않는다",
+        "poleId": "low",
+        "axisId": "extraversion"
+      },
+      {
+        "id": "e3-unknown",
+        "label": "모르겠음 / 관찰 못 함",
+        "poleId": null,
+        "axisId": "extraversion"
+      }
+    ]
+  },
+  {
+    "id": "e4",
+    "axisId": "extraversion",
+    "text": "최근 일주일 동안 함께 있는 시간이 줄면 어떻게 하나요?",
+    "options": [
+      {
+        "id": "e4-a",
+        "label": "사람을 찾아 표현한다",
+        "poleId": "high",
+        "axisId": "extraversion"
+      },
+      {
+        "id": "e4-b",
+        "label": "혼자 있는 시간도 편하게 보낸다",
+        "poleId": "low",
+        "axisId": "extraversion"
+      },
+      {
+        "id": "e4-c",
+        "label": "문 앞이나 주변에서 기다린다",
+        "poleId": "high",
+        "axisId": "extraversion"
+      },
+      {
+        "id": "e4-d",
+        "label": "평소와 비슷하게 지낸다",
+        "poleId": "low",
+        "axisId": "extraversion"
+      },
+      {
+        "id": "e4-unknown",
+        "label": "모르겠음 / 관찰 못 함",
+        "poleId": null,
+        "axisId": "extraversion"
+      }
+    ]
+  },
+  {
+    "id": "d1",
+    "axisId": "dominance",
+    "text": "최근 일주일 동안 좋아하는 자리를 다른 고양이가 차지하면 어떻게 하나요?",
+    "options": [
+      {
+        "id": "d1-a",
+        "label": "자리를 되찾으려 다가간다",
+        "poleId": "high",
+        "axisId": "dominance"
+      },
+      {
+        "id": "d1-b",
+        "label": "다른 편안한 곳을 찾는다",
+        "poleId": "low",
+        "axisId": "dominance"
+      },
+      {
+        "id": "d1-c",
+        "label": "상대가 비키기를 기다린다",
+        "poleId": "low",
+        "axisId": "dominance"
+      },
+      {
+        "id": "d1-d",
+        "label": "몸으로 자리를 막거나 밀어낸다",
+        "poleId": "high",
+        "axisId": "dominance"
+      },
+      {
+        "id": "d1-unknown",
+        "label": "모르겠음 / 관찰 못 함",
+        "poleId": null,
+        "axisId": "dominance"
+      }
+    ]
+  },
+  {
+    "id": "d2",
+    "axisId": "dominance",
+    "text": "최근 일주일 동안 먹이나 간식이 함께 있을 때 어떤 모습인가요?",
+    "options": [
+      {
+        "id": "d2-a",
+        "label": "먼저 다가가 자기 몫을 지킨다",
+        "poleId": "high",
+        "axisId": "dominance"
+      },
+      {
+        "id": "d2-b",
+        "label": "상대가 먹은 뒤 천천히 먹는다",
+        "poleId": "low",
+        "axisId": "dominance"
+      },
+      {
+        "id": "d2-c",
+        "label": "주변을 살피며 양보하는 편이다",
+        "poleId": "low",
+        "axisId": "dominance"
+      },
+      {
+        "id": "d2-d",
+        "label": "다른 고양이의 접근을 막는다",
+        "poleId": "high",
+        "axisId": "dominance"
+      },
+      {
+        "id": "d2-unknown",
+        "label": "모르겠음 / 관찰 못 함",
+        "poleId": null,
+        "axisId": "dominance"
+      }
+    ]
+  },
+  {
+    "id": "d3",
+    "axisId": "dominance",
+    "text": "최근 일주일 동안 다른 고양이가 다가오면 어떤 반응을 보이나요?",
+    "options": [
+      {
+        "id": "d3-a",
+        "label": "먼저 다가가 관계를 주도한다",
+        "poleId": "high",
+        "axisId": "dominance"
+      },
+      {
+        "id": "d3-b",
+        "label": "거리를 두고 지켜본다",
+        "poleId": "low",
+        "axisId": "dominance"
+      },
+      {
+        "id": "d3-c",
+        "label": "상대가 다가오는 것을 기다린다",
+        "poleId": "low",
+        "axisId": "dominance"
+      },
+      {
+        "id": "d3-d",
+        "label": "자리를 차지하며 신호를 보낸다",
+        "poleId": "high",
+        "axisId": "dominance"
+      },
+      {
+        "id": "d3-unknown",
+        "label": "모르겠음 / 관찰 못 함",
+        "poleId": null,
+        "axisId": "dominance"
+      }
+    ]
+  },
+  {
+    "id": "d4",
+    "axisId": "dominance",
+    "text": "최근 일주일 동안 집 안에서 주로 어느 공간을 선택하나요?",
+    "options": [
+      {
+        "id": "d4-a",
+        "label": "사람과 고양이가 잘 보이는 중심 자리",
+        "poleId": "high",
+        "axisId": "dominance"
+      },
+      {
+        "id": "d4-b",
+        "label": "방해받지 않는 조용한 자리",
+        "poleId": "low",
+        "axisId": "dominance"
+      },
+      {
+        "id": "d4-c",
+        "label": "다른 고양이와 겹치지 않는 곳",
+        "poleId": "low",
+        "axisId": "dominance"
+      },
+      {
+        "id": "d4-d",
+        "label": "높고 눈에 잘 띄는 자리",
+        "poleId": "high",
+        "axisId": "dominance"
+      },
+      {
+        "id": "d4-unknown",
+        "label": "모르겠음 / 관찰 못 함",
+        "poleId": null,
+        "axisId": "dominance"
+      }
+    ]
+  },
+  {
+    "id": "p1",
+    "axisId": "impulsiveness",
+    "text": "최근 일주일 동안 갑자기 움직이는 물건을 보면 어떻게 하나요?",
+    "options": [
+      {
+        "id": "p1-a",
+        "label": "바로 쫓거나 달려든다",
+        "poleId": "high",
+        "axisId": "impulsiveness"
+      },
+      {
+        "id": "p1-b",
+        "label": "잠시 살핀 뒤 천천히 다가간다",
+        "poleId": "low",
+        "axisId": "impulsiveness"
+      },
+      {
+        "id": "p1-c",
+        "label": "움직임이 멈추면 관심을 보인다",
+        "poleId": "low",
+        "axisId": "impulsiveness"
+      },
+      {
+        "id": "p1-d",
+        "label": "생각하기 전에 앞발을 뻗는다",
+        "poleId": "high",
+        "axisId": "impulsiveness"
+      },
+      {
+        "id": "p1-unknown",
+        "label": "모르겠음 / 관찰 못 함",
+        "poleId": null,
+        "axisId": "impulsiveness"
+      }
+    ]
+  },
+  {
+    "id": "p2",
+    "axisId": "impulsiveness",
+    "text": "최근 일주일 동안 문이나 창문이 열리면 어떤 반응을 보이나요?",
+    "options": [
+      {
+        "id": "p2-a",
+        "label": "순간적으로 달려가려 한다",
+        "poleId": "high",
+        "axisId": "impulsiveness"
+      },
+      {
+        "id": "p2-b",
+        "label": "주변을 살핀 뒤 움직인다",
+        "poleId": "low",
+        "axisId": "impulsiveness"
+      },
+      {
+        "id": "p2-c",
+        "label": "열린 공간을 천천히 확인한다",
+        "poleId": "low",
+        "axisId": "impulsiveness"
+      },
+      {
+        "id": "p2-d",
+        "label": "부르는 소리에도 움직임을 먼저 보인다",
+        "poleId": "high",
+        "axisId": "impulsiveness"
+      },
+      {
+        "id": "p2-unknown",
+        "label": "모르겠음 / 관찰 못 함",
+        "poleId": null,
+        "axisId": "impulsiveness"
+      }
+    ]
+  },
+  {
+    "id": "p3",
+    "axisId": "impulsiveness",
+    "text": "최근 일주일 동안 놀이가 끝난 뒤에는 어떻게 하나요?",
+    "options": [
+      {
+        "id": "p3-a",
+        "label": "더 놀자며 바로 다른 것을 찾는다",
+        "poleId": "high",
+        "axisId": "impulsiveness"
+      },
+      {
+        "id": "p3-b",
+        "label": "몸을 정리하며 천천히 쉰다",
+        "poleId": "low",
+        "axisId": "impulsiveness"
+      },
+      {
+        "id": "p3-c",
+        "label": "잠시 쉬고 다음 행동을 고른다",
+        "poleId": "low",
+        "axisId": "impulsiveness"
+      },
+      {
+        "id": "p3-d",
+        "label": "흥분한 움직임을 한동안 이어간다",
+        "poleId": "high",
+        "axisId": "impulsiveness"
+      },
+      {
+        "id": "p3-unknown",
+        "label": "모르겠음 / 관찰 못 함",
+        "poleId": null,
+        "axisId": "impulsiveness"
+      }
+    ]
+  },
+  {
+    "id": "p4",
+    "axisId": "impulsiveness",
+    "text": "최근 일주일 동안 원하는 것이 바로 보이지 않으면 어떻게 하나요?",
+    "options": [
+      {
+        "id": "p4-a",
+        "label": "여러 곳을 빠르게 돌아다닌다",
+        "poleId": "high",
+        "axisId": "impulsiveness"
+      },
+      {
+        "id": "p4-b",
+        "label": "잠시 기다리며 주변을 살핀다",
+        "poleId": "low",
+        "axisId": "impulsiveness"
+      },
+      {
+        "id": "p4-c",
+        "label": "다른 활동으로 자연스럽게 바꾼다",
+        "poleId": "low",
+        "axisId": "impulsiveness"
+      },
+      {
+        "id": "p4-d",
+        "label": "소리나 행동으로 즉시 표현한다",
+        "poleId": "high",
+        "axisId": "impulsiveness"
+      },
+      {
+        "id": "p4-unknown",
+        "label": "모르겠음 / 관찰 못 함",
+        "poleId": null,
+        "axisId": "impulsiveness"
+      }
+    ]
+  }
+]
+

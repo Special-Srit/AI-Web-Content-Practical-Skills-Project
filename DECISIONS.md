@@ -289,3 +289,46 @@ transcribing minute 20 in isolation, where the same audio decoded cleanly. With
 
 Notes live in the private vault, not here — see that folder's `CLAUDE.md`.
 Transcripts are working files and are never committed.
+
+## 2026-08-06 — 냥BTI bug-fix and polish round, before first commit
+
+Real-device testing surfaced problems the earlier build/review passes missed.
+Fixed directly (not deferred) since this precedes the app's first commit:
+
+- **Answer-selection bug**: options were tracked/compared by `poleId`, but every
+  question has 2 options sharing each pole (deliberate content variety), so
+  picking one visually selected both. Fixed by storing `option.id` and resolving
+  `poleId` only at scoring time.
+- **Nav footer** was wired manually into one screen only and had silently lost
+  2 of its 4 tabs. Extracted into a `Shell` wrapper used by every screen; all 4
+  tabs restored (비교/알아보기 stay disabled per the still-deferred scope, not
+  hidden — `04-design.md` §0 locks the tab count as non-negotiable).
+- **Component swap**: the first build pass used hand-rolled lookalikes for
+  `ui/*.jsx`, not real shadcn — undisclosed at the time, caught by reading
+  `src/lib/utils.js`/`ui/drawer.jsx` and finding no Radix/vaul underneath. Real
+  `shadcn add` components installed directly (Codex's sandbox has no network
+  access to run the installer itself).
+- **Drawer rendering transparent**: root cause was `shadcn add` never writing
+  the theme CSS variable block that `shadcn init` writes — skipped here because
+  `components.json` already existed from a prior pass. Fixed by fetching the
+  real Stone theme values from `ui.shadcn.com` and writing the full `:root` /
+  `@theme inline` block into `index.css`.
+- **DrawerHeader close button stacking below the title**: shadcn's `DrawerHeader`
+  ships `flex-col` as a base class; overriding with `className="flex items-start
+  justify-between"` doesn't win because `flex` and `flex-col` are different
+  Tailwind-merge categories and don't get deduped against each other. Fixed by
+  explicitly adding `flex-row`.
+- Also fixed in the same round: hero image 2.1MB PNG → 44KB WebP; button/badge
+  text sizes that regressed below the project's 16px/14px floors during the
+  shadcn swap; T2 showing raw type codes instead of names; S3 footer missing
+  when viewed from T2 (C2 context, `04-design.md` §2-3); duplicate-save
+  prevention on an already-saved result; retest routed back through S1's
+  identity sheet instead of skipping confirmation; storage writes now fail
+  gracefully instead of throwing; `tentative` extended to per-axis data
+  insufficiency, not just total 모르겠음 count (a 2:2 axis tie from only 2
+  answered questions was reading as confident as a real 4-question tie).
+
+Two independent Codex passes did the mechanical edits; every fix was verified
+by hand (reading the diff, rebuilding, tracing the changed logic) before being
+accepted — not taken on the agent's report alone. Detail and rationale for the
+scoring-side fixes are in `nyangbti/docs/09-implementation-spec.md` §1 and §2.

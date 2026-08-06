@@ -7,9 +7,10 @@
 .idea/
 *.swp
 
-# node (only if a build step gets added later)
+# node (build step added 2026-08-06 — nyangbti's React/Vite app)
 node_modules/
 package-lock.json
+dist/
 
 # secrets / local config
 .env
