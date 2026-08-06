@@ -2,6 +2,30 @@
 
 Newest first. Records *why*, so choices aren't re-litigated later.
 
+## 2026-08-06 — 냥BTI main-flow build: scope, axis model, and 모르겠음 threshold locked
+
+First coding pass. Scope = 오세진's main flow only (S1→S1b→S2→S3→S3-c→T2 + shell) — matches
+the 6 already-approved mockups and the class's own minimum bar. T3 비교, T4 알아보기, S1-a
+이어하기, S3-a/b 배너, S3-d 공유, dark mode deferred to a second pass — see
+`nyangbti/docs/09-implementation-spec.md` §4 for the full deferred list.
+
+Two decisions that had no prior answer anywhere in the docs, both proposed by Claude and
+confirmed by Srit:
+- **4 axes, not 5** — 신경성·외향성·우월성·충동성, dropping 우호성(Agreeableness) from the
+  Feline Five paper. Chosen because those 4 already have guardian-recommendation content
+  elsewhere in `03-ux-research.md`, so 처방 content derives from the paper rather than being
+  invented. The 4축16유형-is-a-simplification disclosure (already planned for T4) covers this.
+- **모르겠음 허용 개수 m = 4** (out of 16) — the only prior numeric hint was "절반 이상
+  모르겠음 = 실패" (03 §11-3); 4 is well under that with margin for a genuinely uncertain
+  first-time owner.
+
+Full spec (data model, scoring algorithm, exact letter codes, component list, exact polish
+values) written to `nyangbti/docs/09-implementation-spec.md` and the approved plan at
+`~/.claude/plans/warm-riding-codd.md`. Build delegated to Codex (luna, high, `--write`) per
+`nyangbti/docs/prompts/11-main-flow-build-prompt.md` — content tone (금지 목록 must never read
+as scolding, 03 §11-6) gets a human review pass before commit, same as every other AI-drafted
+artifact this project has shipped.
+
 ## 2026-08-06 — 냥BTI's UI/layout step follows the instructor's demo: AI image → code, no Figma hi-fi pass
 
 The instructor described their own workflow for the class's shared example: moodboard →

@@ -25,6 +25,7 @@
 | `08-ui-mockup-generation-prompt.md` | 주요 화면 6장 고해상도 UI 목업 생성 (`nyangbti/assets/ui-mockup/`) | Codex imagegen 스킬 |
 | `09-design-critique-prompt.md` | 위 목업 6장의 디자인 품질 검토("너무 단순함" 진단) | Codex gpt-5.6-sol, effort high |
 | `10-design-polish-research-prompt.md` | elevation·아이콘·타이포·색상 표면화 근거 조사 → `06-design-system.md` §9 | Codex gpt-5.6-luna, effort high |
+| `11-main-flow-build-prompt.md` | 오세진 주 경로 실제 코딩 — 스캐폴드·데이터 모델·채점·콘텐츠·컴포넌트 | Codex gpt-5.6-luna, effort high, `--write` |
 
 `04-design.md` 자체는 `.claude/agents/ux-ui-designer.md` 역할 정의를 그대로 쓰는
 서브에이전트가 작성했으므로, 그 프롬프트는 **역할 파일 + 전달한 결정 사항**의 조합이다.
