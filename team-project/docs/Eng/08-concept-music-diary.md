@@ -79,7 +79,7 @@ Two legal sources, both used:
 
 | Source | Role | Rules |
 | --- | --- | --- |
-| **Bundled demo set** | So 08-14 works without depending on a laptop's file picker | **Verified CC0 or CC BY only** (see rules below). Every file recorded in `public/audio/CREDITS.md` before it is committed, and credited inside the deployed app |
+| **Bundled demo set** | So 08-14 works without depending on a laptop's file picker | **Verified CC0 or CC BY only** (see rules below). Every file recorded in `public/audio/CREDITS.md` before it is committed |
 | **User's own files** | The real library | File picker, as in `07`. Never uploaded anywhere |
 
 Practical limits for the bundled set:
@@ -107,8 +107,15 @@ Practical limits for the bundled set:
     no-attribution route is paid
 - Record per track: 제목 · 제작자 · 출처 URL · 정확한 라이선스와 버전 · 받은 날짜 ·
   **자르거나 변환했다는 사실**
-- **Credits must appear in the deployed app**, not only in the repo — CC BY
-  requires credit where users can readily find it
+- **Credits live in `public/audio/CREDITS.md`, not in the app UI** (revised
+  2026-08-07 — reverses the earlier "must appear in the deployed app" rule).
+  This app is never actually published or distributed with the bundled
+  tracks — it's a course portfolio piece (like 냥BTI), not a shipped product,
+  so the CC BY "credit where users can readily find it" requirement is
+  satisfied by the public repo's README/CREDITS.md rather than in-app UI. If
+  this project is ever actually deployed for real users, this decision must
+  be revisited — the CC BY obligation doesn't go away, it just isn't
+  triggered by a portfolio build nobody but the repo visits.
 - If the licence cannot be established with certainty, drop the track.
 
 **Embedded artwork is unavailable without tag parsing.** `File` exposes `name`

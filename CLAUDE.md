@@ -169,6 +169,79 @@ screen link, and it couldn't be corrected without rebuilding in Figma. Editable
 Figma nodes are the fix, and are worth citing in the presentation's AI-limits
 section since it's an improvement on his own example.
 
+### Codex — how to invoke it in this repo
+
+`AGENTS.md` is Codex's own entry point (model, `team-project/src/` lock, stack).
+This section is the other half: how a **Claude Code session** should launch and
+supervise Codex here, written from patterns that already worked in this repo —
+see `nyangbti/docs/prompts/README.md` for the full log of every prompt actually
+run, which model, and what review caught. Read that file before writing a new
+Codex prompt; don't reinvent the pattern from scratch each session.
+
+**The established shape, in order:**
+
+1. For research or a review pass, write the prompt inline. For anything that
+   creates or edits real files, write it to
+   `<project>/docs/prompts/NN-<slug>-prompt.md` first — numbered next in that
+   project's sequence, one file per Codex task. This is not just a log; 3-2
+   made "the prompts used to produce results" a **graded presentation
+   deliverable**, so the saved file is the record of what was actually asked,
+   not a tidied-up version.
+2. State the model and effort at the top of the prompt: `luna` high for
+   research/build, `sol` high for review, per the routing table in
+   `~/.claude/CLAUDE.md`. **A model never reviews its own work** — luna
+   researches, sol reviews; this caught real defects twice (`02`, `07` in the
+   prompts log) and once found Claude's own error, not Codex's.
+3. Big builds (anything past a small fix) go through a **Plan-mode plan file**
+   first (`~/.claude/plans/*.md`), approved by Srit, *then* a short Codex
+   prompt that mostly just points at the plan and calls out the handful of
+   details most likely to be gotten wrong — see
+   `nyangbti/docs/prompts/11-main-flow-build-prompt.md` for the shape. Don't
+   hand Codex a build task without a written spec it can be checked against.
+4. **Prompt language is English**, since GPT is an LLM like any other and
+   follows English instructions more reliably — decided 2026-08-05, applies
+   from prompt `06` onward. The two exceptions: (a) prompts that are
+   themselves 3-2's graded deliverable stay in **whatever language was
+   actually typed** — rewriting `01`/`02`/`04`/`05` to English after the fact
+   would make the record disagree with what happened, so they stay Korean;
+   (b) a prompt whose entire *output* is Korean prose for a Korean audience
+   may still be written in Korean if that's genuinely clearer to give it —
+   judge case by case, and default to English when unsure.
+
+**Verified failure modes in this repo — check for these, don't assume they
+won't recur:**
+
+- **`codex-companion.mjs task --background` can silently fail to register.**
+  Confirmed 2026-08-05: it printed a task ID, but no `jobs/` entry was ever
+  created for this workspace and nothing landed. Prefer `task --write`
+  (no `--background`) wrapped in Claude Code's own `Bash run_in_background` —
+  that path is harness-tracked and reliably notifies. Verify with `ls` on the
+  expected output file before trusting a "started" message either way.
+- **Codex's default sandbox has no network access**, so it cannot run
+  `npm install` or `shadcn add` itself. The 08-06 build round shipped
+  hand-rolled lookalike components under `src/components/ui/` because the
+  real installer couldn't run — undiscovered until someone read
+  `src/lib/utils.js` and the `Drawer` source looking for actual Radix/vaul
+  underneath and found none. **After any Codex pass that touches
+  `components/ui/`, verify the real library is there — don't trust the
+  filenames matching.** If Codex genuinely needs the installer to run, use
+  the raw `codex exec` network-capable path in
+  `~/.claude/CLAUDE-codex-subagents.md`, not the default sandboxed agent.
+- **`shadcn add` skips writing the theme CSS block if `components.json`
+  already exists** (from a prior partial run) — caused a fully transparent
+  `Drawer` in the 08-06 round. If a shadcn component renders unstyled, check
+  `index.css` for the missing `:root` / `@theme inline` block before assuming
+  the component itself is broken.
+- **Never take a Codex report as verification.** Every fix in the 08-06 round
+  was accepted only after a human read the diff, rebuilt, and traced the
+  changed logic — not on the agent's own "done, build passes" message. This
+  matches the global rule that a model never reviews its own work; it applies
+  to trusting its self-report just as much as to grading its own output.
+- **Codex never commits here.** Build prompts end with "leave changes
+  uncommitted, review/commit happens separately" (see `11`) — matches the
+  global invariant that only Claude commits, and `git add -A` is never used
+  even then.
+
 ## Language convention
 
 Following the same split used in Project-CX: **English identifiers and
